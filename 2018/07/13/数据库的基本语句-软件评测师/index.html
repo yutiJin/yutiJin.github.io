@@ -1,0 +1,132 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>数据库的基本语句 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数据库的基本语句</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">数据库的基本语句</h1><div class="post-meta">Jul 13, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>各种关于数据库基本语句的汇总。</p>
+<h2 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h2><p>对列进行查询。</p>
+<h3 id="一、-基础查询"><a href="#一、-基础查询" class="headerlink" title="一、 基础查询"></a><font color="green">一、 基础查询</font></h3><p>例子：</p>
+<pre><code>SELECT * FROM emp；
+</code></pre><ol>
+<li><p>在整个简单查询之中，主要有两个子句完成：</p>
+<ul>
+<li><p>SELECT子句：在这个子句里面可以发现存在有如下的内容：</p>
+<ul>
+<li>*：表示查询所有的数据列；</li>
+<li>列名称：表示要显示指定列，列也可以设置别名；</li>
+<li>DISTINCT：表示去除重复数据的显示；</li>
+</ul>
+</li>
+<li><p>FROM子句：定义要使用的数据表，就可以理解为数据来源</p>
+</li>
+</ul>
+</li>
+<li><p>关于执行顺序问题，这两个子句的执行顺序：</p>
+<ul>
+<li>第一步执行FROM子句：表示确定数据来源；</li>
+<li>第二部执行SELECT子句：确定要显示的数据列。</li>
+</ul>
+</li>
+</ol>
+<p>范例：</p>
+<pre><code>SELECT empno，ename FROM emp;
+</code></pre><h3 id="二、-DISTINCT"><a href="#二、-DISTINCT" class="headerlink" title="二、 DISTINCT"></a><font color="green">二、 DISTINCT</font></h3><p>例子：</p>
+<pre><code>SELECT DISTINCT job FROM emp；
+</code></pre><p>虽然使用DISTINCT可以消除全部的重复内容，但是只局限于所有列的内容<font color="green">全部相同的情况</font>。</p>
+<h3 id="三、-四则运算"><a href="#三、-四则运算" class="headerlink" title="三、 四则运算"></a><font color="green">三、 四则运算</font></h3><p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno,ename,sal*<span class="number">12</span>,sal/<span class="number">30</span> <span class="keyword">FROM</span> emp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,sal*<span class="number">12</span>+<span class="number">5000</span> <span class="keyword">FROM</span> emp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> empno,ename,(sal+<span class="number">200</span>)*<span class="number">12</span>+<span class="number">5000</span> <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<h3 id="四、-AS（别名）"><a href="#四、-AS（别名）" class="headerlink" title="四、 AS（别名）"></a><font color="green">四、 AS（别名）</font></h3><p>例子：</p>
+<pre><code>SELECT empno,ename,(sal+200)*12+5000 AS 年薪 FROM emp;
+</code></pre><p>此处是否加上 <strong>AS</strong> 对于最终的结果没有任何区别，但是，如果要进行别名的设置，别名在程序之中肯定是没有用的，那么显示中用处也不大，而且，<font color="green">一定不要使用中文</font>。</p>
+<h3 id="五、-（表示进行连接）"><a href="#五、-（表示进行连接）" class="headerlink" title="五、 ||（表示进行连接）"></a><font color="green">五、 ||（表示进行连接）</font></h3><p>例子：</p>
+<p><code>SELECT&#39;编号是：&#39; || empno || &#39;的雇员姓名是：&#39; || ename || &#39;,基本工资是：&#39; FROM emp;</code></p>
+<p>在进行简单查询的时候，可以直接利用“ || ”进行字符串或者列数据的连接操作。</p>
+<blockquote>
+<p>注：</p>
+<p>简单查询是将一张表中的全部或者部分<font color="red"><strong>列</strong></font>进行显示的操作</p>
+</blockquote>
+<hr>
+<h2 id="限定查询"><a href="#限定查询" class="headerlink" title="限定查询"></a>限定查询</h2><font color="green"><strong>WHERE</strong></font>语句，对行进行操作。<br><br>筛选就是限定查询的功能。<br><br>例子：<br><br><code>SELECT * FROM emp WHERE sal&gt;1500;</code><br><br>1. 这个语法中，就是比之前的语法多了一个WHERE子句，在WHERE子句中可以设置一系列的过滤条件。这些过滤条件可以设置多个，这些条件之间可以利用逻辑运算进行连接.<br>2. 语句的执行顺序：<br>     第一步：执行FROM子句，来控制数据的来源；<br>     第二步：执行WHERE子句，使用限定符进行数据的行过滤；<br>     第三步：执行SELECT子句，确定要显示的数据列。<br><br>### <font color="green">一、 关系运算符</font>
+
+<p>例子：</p>
+<p><code>SELECT * FROM emp WHERE job=&#39;CLERK&#39;;</code></p>
+<p><code>SELECT * FROM emp WHERE job&lt;&gt;&#39;CLERK&#39;;</code></p>
+<p><code>SELECT * FROM emp WHERE job!=&#39;CLERK&#39;;</code></p>
+<p><code>SELECT * FROM emp WHERE job=&#39;SALESMAN&#39; AND sal&gt;1200;</code></p>
+<p><code>SELECT * FROM emp WHERE (deptno=10 AND job=&#39;MANAGER&#39;) OR (deptno=20 AND job=&#39;CLERK&#39;);</code></p>
+<h3 id="二、-BETWEEN-AND"><a href="#二、-BETWEEN-AND" class="headerlink" title="二、 BETWEEN AND"></a><font color="green">二、 BETWEEN AND</font></h3><p>范围过滤查询</p>
+<p>例子：</p>
+<p><code>SELECT * FROM emp WHERE sal BETWEEN 1500 AND 3000；</code></p>
+<p><code>SELECT * FROM emp WHERE hiredate BETWEEN &#39;01-1月 -81&#39; AND &#39;31-12月 -81&#39;;</code></p>
+<blockquote>
+<p>注：</p>
+<p>BETWEEN AND：包含最大最小值，即包含1500和3000</p>
+<p>hiredate：跟日期有关的必须用到hiredate，目的是为了实现日期和字符串数据之间的转换操作功能</p>
+</blockquote>
+<h3 id="三、-NULL判断"><a href="#三、-NULL判断" class="headerlink" title="三、 NULL判断"></a><font color="green">三、 NULL判断</font></h3><p>null不能用等判断</p>
+<p>so：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> comm <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>；</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> comm <span class="keyword">IS</span> <span class="literal">NULL</span> <span class="keyword">AND</span> sal&gt;<span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> comm <span class="keyword">IS</span> <span class="literal">NULL</span> <span class="keyword">OR</span> comm&lt;<span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> job <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> comm <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>要找的是职位job，那么很有可能出现重复，重复数据必须使用DISTINCT消除</p>
+</blockquote>
+<h3 id="四、-IN、NOT-IN"><a href="#四、-IN、NOT-IN" class="headerlink" title="四、 IN、NOT IN"></a><font color="green">四、 IN、NOT IN</font></h3><p>列表范围查找。</p>
+<ul>
+<li>在指定数据范围内：字段 | 值 IN（值，值。。。）</li>
+<li>不在指定数据范围内：字段 | 值 NOT IN（值，值。。。）</li>
+</ul>
+<p><strong>题目</strong>：查询出雇员编号是7369、7788、7566的雇员信息</p>
+<p>（1）在面对这样的操作，如果此时不使用IN判断符就可以利用多个条件并且使用OR连接</p>
+<pre><code>SELECT * FROM emp WHERE empno=7369 OR empno=7788 OR empno=7566；
+</code></pre><p>（2）下面将代码修改为IN</p>
+<pre><code>SELECT * FROM emp WHERE empno IN (7369，7788，7566);
+</code></pre><p>（3）不在范围之内用NOT IN</p>
+<pre><code>SELECT * FROM emp WHERE empno NOT IN (7369,7788,7566);
+</code></pre><blockquote>
+<p><font color="red"><strong>注意</strong></font>：</p>
+<p>在使用NOT IN操作的时候有一点需要注意。关于null的问题。</p>
+<p>使用NOT IN时，范围数据之中不可以包含null数据</p>
+</blockquote>
+<h3 id="五、-LIKE"><a href="#五、-LIKE" class="headerlink" title="五、 LIKE"></a><font color="green">五、 LIKE</font></h3><p>模糊查询。</p>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename <span class="keyword">LIKE</span> <span class="string">'S%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename <span class="keyword">LIKE</span> <span class="string">'_M%'</span>;（名字第二个字母是M）</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename <span class="keyword">LIKE</span> <span class="string">"%F%"</span>;（任意位置包含F）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>S之后可以是任意的一个数据，可能是0位、1位、多位，因此使用%</p>
+<p>只是第二个字母为M，so，第一个字母可以是任意值，因此用”_”表示</p>
+<p>F可能是在开头、中间、结尾，因此就必须考虑前后都有的问题，so，使用%</p>
+</blockquote>
+<font color="purple">在之前的所有查询中都是针对字符数据进行的操作，而对于LIKE而言，也可以在数字或者日期类型上使用。</font>
+
+<p>例子：</p>
+<pre><code>SELECT * FROM emp WHERE sal LIKE &apos;%1%&apos; OR hiredate LIKE &apos;%81%&apos;;
+</code></pre><blockquote>
+<p>注：</p>
+<p>如果在设置模糊查询的时候不设置关键字，就表示查询全部</p>
+<p><code>SELECT * FROM emp WHERE sal LIKE &#39;%%&#39; OR hiredate LIKE &#39;%%&#39;</code></p>
+</blockquote>
+<p><strong>题目：</strong></p>
+<p>找出部门10中所有经理，部门20中所有办事员（CLERK），既不是经理又不是办事员但是其薪金大于或等于2000的所有员工的详细资料，并且要求这些雇员的姓名之中包含有字母S或字母K。</p>
+<p>答案：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp </span><br><span class="line"><span class="keyword">WHERE</span> ((deptno=<span class="number">10</span> <span class="keyword">AND</span> job=<span class="string">'MANAGER'</span>)</span><br><span class="line">      <span class="keyword">OR</span> (deptno=<span class="number">20</span> <span class="keyword">AND</span> job=<span class="string">'CLERK'</span>)</span><br><span class="line">      <span class="keyword">OR</span> (job <span class="keyword">NOT</span> <span class="keyword">IN</span>(<span class="string">'MANAGER'</span>,<span class="string">'CLERK'</span>) <span class="keyword">AND</span> sal&gt;<span class="number">2000</span>))</span><br><span class="line">      <span class="keyword">AND</span> (ename <span class="keyword">LIKE</span> <span class="string">'%S%'</span> <span class="keyword">OR</span> ename <span class="keyword">LIKE</span> <span class="string">'%K%'</span>);</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序"></a>数据排序</h2><h3 id="一、-ORDER-BY"><a href="#一、-ORDER-BY" class="headerlink" title="一、 ORDER BY"></a><font color="green">一、 ORDER BY</font></h3><p>在ORDER BY子句之中可以指定要进行排序的字段，而后字段有两种排序模式：</p>
+<ul>
+<li>升序：ASC，默认</li>
+<li>降序：DESC，需要编写的</li>
+</ul>
+<p>在所有的子句之中，一定要记住，ORDER BY子句是放在查询语句的最后一行，是最后一个执行的，他的执行顺序：FROM、WHERE、SELECT、ORDER BY，既然ORDER BY在SELECT之后执行，那么就可以表示ORDER BY子句可以使用SELECT子句中设置的别名。</p>
+<p>例子：</p>
+<p>（1）按照基本工资从高到低进行排序</p>
+<pre><code>SELECT * FROM emp ORDER BY sal DESC；
+</code></pre><p>（2）查询出办事员的详细资料，并且按照基本工资由低到高排序</p>
+<pre><code>SELECT * FROM emp WHERE job=&apos;CLERK&apos; ORDER BY sal ASC;
+</code></pre><p>（3）按照基本工资从高到低排序，如果工资相同则按照雇用日期进行从早到晚的排序</p>
+<pre><code>SELECT * FROM emp ORDER BY sal DESC，hiredate ASC；
+</code></pre><p>​    </p>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/13/数据库的单行函数-软件评测师/">数据库的单行函数</a><a class="next" href="/2018/07/12/数据库的理论知识-软件评测师/">数据库的理论知识</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

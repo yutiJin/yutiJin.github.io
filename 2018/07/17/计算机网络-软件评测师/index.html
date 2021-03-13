@@ -1,0 +1,339 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>计算机网络 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">计算机网络</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">计算机网络</h1><div class="post-meta">Jul 17, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>计算机网络知识的学习还是比较迅速的，可能是因为之前学过的原因，但是吧，这笔记还是做了整整五个小时，唉，也不知道是不是自己效率太低了，加油吧，少年。</p>
+<p>防火墙技术可以分为<strong>IP包过滤</strong>、<strong>路线过滤</strong>和<strong>应用层代理</strong>等3大类型。</p>
+<p><strong>IP包过滤</strong>：接收被保护网络和外部网络之间的IP数据包，只允许让经过授权的数据包通过</p>
+<p><strong>路线过滤</strong>：工作在会话层，在两个主机首次建立TCP连接时创立一个电子屏障</p>
+<p><strong>应用层代理</strong>：位于应用层，它可以对网络中任何一层数据通信进行筛选保护</p>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p><strong>考题一</strong>：</p>
+<p>下面关于防火墙功能的说法中，不正确的是 _____ 。（<font color="red"><strong>A</strong></font>）</p>
+<p>A、防火墙能有效的防范病毒的入侵</p>
+<p>B、防火墙能控制对特殊站点的访问</p>
+<p>C、防火墙能对进出的数据包进行过滤</p>
+<p>D、防火墙能对部分网络攻击行为进行检测和报警</p>
+<blockquote>
+<p>注：防火墙基于数据包过滤，而病毒是应用程序层面的，因此防火墙并不能防范病毒的入侵。</p>
+</blockquote>
+<p><strong>考题二</strong>：</p>
+<p>公司使用包过滤防火墙控制进入公司局域网的数据，在不考虑使用代理服务器的情况下，下面描述错误的是“该防火墙能够 _____ 。”</p>
+<p>A、使公司员工只能访问Internet上与其有业务联系的公司的IP地址</p>
+<p>B、仅允许HTTP协议通过</p>
+<p>C、使员工不能直接访问FTP服务端口号为21的FTP服务</p>
+<p>D、仅允许公司中具有某些特定IP地址的计算机访问外部网络</p>
+<blockquote>
+<p>注：防火墙的功能：基于包过滤的防火墙利用包的属性来过滤。例如，来源IP地址、来源端口号、目的IP地址、目的端口号以及服务类型。</p>
+<p>HTTP属于应用层协议，因此不行</p>
+</blockquote>
+<h2 id="计算机组成"><a href="#计算机组成" class="headerlink" title="计算机组成"></a>计算机组成</h2><ol>
+<li><p><strong>集线器</strong></p>
+<p>定义：</p>
+<p>实际上就是一个多端口的中继器。工作在物理层，主要功能是对接收到的信号进行再生整形放大，以扩大网络的传输距离，同时把所有结点集中在以其为中心的结点上的网络设备。</p>
+<p>特点：</p>
+<p>A、只是一个多端口的信号放大设备，在网络中只起到信号放大和重发的作用，其目的是扩大网络的传输范围，而不具备信号的定向传送能力，是一个标准的共享式设备</p>
+<p>B、只与其上联设备通信，同层的个端口之间不会直接通信，而是通过上联设备将信息广播到所有端口上</p>
+</li>
+<li><p><strong>网桥</strong></p>
+<p>工作在数据链路层。用来连接不同网段。网桥的两个端口分别有一条独立的交换信道，不是共享一条背板总线，可以隔离冲突域。</p>
+<p>网桥比集线器多一个“过滤帧”的功能。网桥会检查帧的发送和目的地址。</p>
+</li>
+<li><p><strong>交换机</strong></p>
+<p>工作地址：在数据链路层。</p>
+<p>工作原理：交换机内部的CPU会在每个端口成功连接时，通过将MAC地址和端口对应，形成MAC表。在今后通讯中，发往该MAC地址的数据包将仅送往其对应的端口，而不是所有端口。</p>
+</li>
+<li><p><strong>路由器</strong></p>
+<p>路由器比交换机更智能，能理解数据中的IP地址。</p>
+<p>三个特点：</p>
+<p>A、它可以连接遵守不同网络协议的网络。</p>
+<p>B、路由器能识别数据的目的地址所在的网络，并能从多条路径中选择最佳的路径发生数据。（能选择数据传递路径）</p>
+<p>C、路由器工作在网络层。</p>
+<p>补充：路由、路由表和路由协议</p>
+<p><strong>路由</strong>：把信息从源穿过网络传递到目的地的行为，在路径中至少遇到一个中间节点。路由包括两个基本动作：确定最佳路径和通过网络传输信息，即选择路径和交换</p>
+<p><strong>路由表</strong>：主要工作是为经过路由器的每个数据帧寻找一条最佳传输路径，并将该数据有效的传送到目的站点。</p>
+<p><strong>路由协议</strong>：</p>
+<p>RIP：最常用的路由协议，是基于距离矢量算法的路由协议，利用跳数来作为计量标准。</p>
+<p>OSPF：开放式最短路径优先，一种基于链路状态的路由协议</p>
+</li>
+<li><p><strong>网关</strong></p>
+<p>工作在网络层以上。</p>
+<p>两个网络不仅网络协议不一样，而且硬件和数据结构都大相径庭，那么就得用工作在网络层之上的网关了。</p>
+</li>
+<li><p><strong>调制解调器MODEM</strong></p>
+<p>调制解调器也叫MODEM。他是一个通过电话拨号接入Internet的硬件设备。</p>
+<p>作用：当计算机发送消息时，将计算机内部使用的数字信号转换成可以用电话线传输的模拟信号，通过电话线发送出去；接收信息时，把电话线上传来的模拟信号转换成数字信号传送给计算机，供其接收和处理。</p>
+</li>
+</ol>
+<p><strong>考题一</strong>：</p>
+<p>有多种设备可以实现不同网段或网络之间的互联，互联设备通常可按工作在OSI模型中的层次来划分。在物理层实现互联的称为 _____ ；在数据链路层实现互联的称为 _____ ；在网络层实现互联的称为 _____ ；在运输层及以上高层实现互联的设备称为网关或 _____ 。</p>
+<p> _____ 也是一种用来构造局域网的常用设备，通常可以用双绞线把服务器与客户机等连入 _____ 。</p>
+<p> （<font color="red"><strong>转发器；网桥；路由器；协议转换器；协议转换器；集线器</strong></font>）</p>
+<p><strong>考题二</strong></p>
+<p>集线器是一种物理层联网设备，下面有关集线器的叙述中错误的是 _____ 。（<font color="red"><strong>C</strong></font>）</p>
+<p>A、集线器没有自动寻址功能</p>
+<p>B、连接在集线器上的故障设备不会影响其他节点通信</p>
+<p>C、集线器可以隔离广播风暴</p>
+<p>D、连接在集线器上的所有节点构成一个冲突域</p>
+<blockquote>
+<p>注： 什么是冲突域？</p>
+<p>所有直接连接在一起的，而且必须竞争以太网总线的结点都可以认为是处在同一个冲突域中，即一次只有一个设备发送消息，其他的都只能等待。</p>
+</blockquote>
+<p><strong>考题三</strong>：</p>
+<p>在Windows系统中设置默认路由的作用是 _____ 。（<font color="red"><strong>B</strong></font>）</p>
+<p>A、当主机接收到一个访问请求时首先选择的路由</p>
+<p>B、当没有其他路由可选时最后选择的路由</p>
+<p>C、访问本地主机的路由</p>
+<p>D、必须选择的路由</p>
+<h2 id="OSI模型"><a href="#OSI模型" class="headerlink" title="OSI模型"></a>OSI模型</h2><p>可分为7层模型：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">OSI七层网络模型</th>
+<th style="text-align:center">TCP/IP四层模型</th>
+<th style="text-align:center">对应网络协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层（Application）</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">HTTP、FTP、SMTP、POP3…</td>
+</tr>
+<tr>
+<td style="text-align:center">表示层（Presentation）</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">Telnet、SNMP</td>
+</tr>
+<tr>
+<td style="text-align:center">会话层（Session）</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">SMTP、DNS</td>
+</tr>
+<tr>
+<td style="text-align:center">传输层（Transport）</td>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">TCP、UDP</td>
+</tr>
+<tr>
+<td style="text-align:center">网络层（Network）</td>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">ICMP、IP、IPX、RARP、ARP</td>
+</tr>
+<tr>
+<td style="text-align:center">数据链路层（Data Link）</td>
+<td style="text-align:center">接口层</td>
+<td style="text-align:center">PPP、FDDI、FTTH</td>
+</tr>
+<tr>
+<td style="text-align:center">物理层（Physical）</td>
+<td style="text-align:center">接口层</td>
+<td style="text-align:center">IEEE 802</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p><strong>物理层</strong>：</p>
+<p>ppp：</p>
+</li>
+<li><p><strong>数据链路层</strong>：分为逻辑链路控制层（LLC）和介质访问控制层（MAC）</p>
+<p>IEEE 802.3：以太网的CSMA/CD（载波监听多路访问/冲突监测）协议<br>IEEE 802.11：无线局域网（WLAN）标准协议</p>
+</li>
+<li><p><strong>网络层</strong>：</p>
+<p>IP（Internet Protocol 国际协议）：IP是网络层的核心，通过路由选择将下一跳IP封装后交给接口层</p>
+<p>ICMP（Internet Control Message Protocol 控制报文协议）：ICMP是网络层的补充，可以回送报文，用来检测网络是否通畅，ping命令发送ICMP的echo包，通过回送的echo relay进行网络测试。</p>
+<p>ARP（Address Resolution Protocol 地址转换协议）：ARP是正向地址解析协议，通过已知IP寻找对应主机的MAC地址。MAC地址是适配器地址，硬件的地址，即物理地址。</p>
+</li>
+<li><p><strong>传输层</strong>：</p>
+<p>TCP（Transmission Control Protocol 传输控制协议）：TCP是面向连接的通信协议，通过3次握手建立连接，通信完成后要拆除连接。</p>
+<p>UDP（User Datagram Protocol 用户数据报文协议）：UDP是面向无连接的通信协议</p>
+</li>
+<li><p><strong>会话层、表示层、应用层</strong>：</p>
+<p>HTTP：超文本传输协议，用于传输web页面的，默认端口为80</p>
+<p>HTTPS：安全超文本传输协议，用于安全的HTTP的传输协议</p>
+<p>FTP：文件传输协议，一般用于文件的上传下载服务，默认端口为21</p>
+<p>TFTP：简单文件传输协议，提供小而简单的文件传输服务</p>
+<p>SSL：安全套接字协议，为数据通信提供安全支持</p>
+<p>Telnet：用户远程登录服务，使用明码传送，保密性差，但是简单</p>
+<p>SNMP：简单网络管理协议，用于管理网络设备和应用程序对象</p>
+<p>SMTP：简单邮件传输协议，用来控制信件的发送、中转，默认端口为25</p>
+<p>POP3：邮局协议第3版本，用来接收邮件，默认端口为110</p>
+<p>IMAP：是由美国华盛顿大学所研发的一种邮件获取协议</p>
+<p>DNS：域名解析服务，提供域名到IP地址之间的转换</p>
+</li>
+</ol>
+<p><strong>考题一</strong>：</p>
+<p>某客户端在采用ping命令检测网络连接故障时发现可以ping通127.0.0.1以及本机的IP地址，但无法ping通同一网段内其他工作正常的计算机的IP地址，说明该客户端的故障是 _____ 。（<font color="red"><strong>C</strong></font>）</p>
+<p>A、TCP/IP协议不能正常工作</p>
+<p>B、本机网卡不能正常工作</p>
+<p>C、本机网络接口故障</p>
+<p>D、本机DNS服务器地址设置错误</p>
+<blockquote>
+<p>注：</p>
+<p>ping 127.0.0.1，即本地循环地址，如果无法ping通，则说明本地址的TCP/IP协议不能正常工作；</p>
+<p>如果操作成功，则ping本机IP地址，如果无法ping通，则说明网络适配器（网卡或者调制解调器）不能正常工作；</p>
+<p>如果操作成功，则ping同一网段中某计算机的IP地址，如果无法ping通，则表明网络线路出现故障。</p>
+</blockquote>
+<p><strong>考题二</strong>：</p>
+<p>某校园网用户无法访问外部站点210.102.58.74，管理人员在Windows操作系统中可以使用 _____ 判断故障发送在校园网内，还是校园网外。</p>
+<p>A、ping 210.102.58.74</p>
+<p>B、tracert 210.102.58.74</p>
+<p>C、netstat 210.102.58.74</p>
+<p>D、arp 210.102.58.74</p>
+<blockquote>
+<p>注：</p>
+<p>ping：Internet包探索器，用于测试网络连接量的程序</p>
+<p>tracert：路由跟踪使用程序，用于确定IP数据报访问目标所采取的路径（这里就是用此命令来跟踪IP数据报的访问路径来查看在哪一段网络中断）</p>
+<p>netstat：显示网络连接、路由表和网络接口信息的命令</p>
+<p>arp：重要的TCP/IP协议，用于确定对应IP地址的网卡物理地址</p>
+</blockquote>
+<p><strong>考题三</strong>：</p>
+<p>以下选项中可以用于Internet信息服务器远程管理的是 _____ 。（<font color="red"><strong>A</strong></font>）</p>
+<p>A、Telnet</p>
+<p>B、RAS</p>
+<p>C、FTP</p>
+<p>D、SMTP</p>
+<blockquote>
+<p>注：</p>
+<p>Telnet（远程登录服务）：远程登录服务器的管理协议</p>
+<p>RAS（Remote Access System 远程访问服务）：主要用来配置企业的远程用户对企业内部网络访问，包括拨号访问</p>
+</blockquote>
+<p><strong>考题四</strong>：</p>
+<p>运行web浏览器的计算机与网页所在的计算机要建立 _____ 连接，采用 _____ 协议传输网页文件 。（<font color="red"><strong>TCP；HTTP</strong></font>）</p>
+<blockquote>
+<p>注：ASP：动态服务器页面，是一种动态网页编辑技术</p>
+<p>RPC（Remote Procedure Call 远程过程调用）：是一种通过网络从远程计算机上请求服务的协议</p>
+</blockquote>
+<p><strong>考题五</strong>：</p>
+<p>用户访问某Web网站，浏览器上显示“HTTP-404”错误，则故障原因是 _____ 。（<font color="red"><strong>B</strong></font>）</p>
+<p>A、默认路由器配置不当</p>
+<p>B、所请求的当前页面不存在</p>
+<p>C、Web服务器内部出错</p>
+<p>D、用户无权访问</p>
+<blockquote>
+<p>注：</p>
+<p>200：ok</p>
+<p>404：Not Found，无法找到文件</p>
+<p>500：Internal Server Error，内部服务器出错</p>
+<p>502：Bad Gateway，网关错误</p>
+<p>503：Service Unavailable，服务器当前不能处理请求</p>
+</blockquote>
+<p><strong>考题六</strong>：</p>
+<p>SNMP所采用的传输层协议是 _____ 。（<font color="red"><strong>A</strong></font>）</p>
+<p>A、UDP</p>
+<p>B、ICMP</p>
+<p>C、TCP</p>
+<p>D、IP</p>
+<blockquote>
+<p>注：</p>
+<p>SNMP是目前TCP/IP网络中应用最为广泛的网络管理协议</p>
+<p>SNMP所采用的传输层协议是UDP</p>
+</blockquote>
+<p><strong>考题七</strong>：</p>
+<p>_____ 不属于电子邮件协议。（<font color="red"><strong>A</strong></font>）</p>
+<p>A、POP3</p>
+<p>B、SMTP</p>
+<p>C、IMAP</p>
+<p>D、MPLS</p>
+<blockquote>
+<p>注：</p>
+<p>MPLS：多协议标记交换，一种标记机制的包交换技术</p>
+</blockquote>
+<p><strong>考题八</strong>：</p>
+<p>WWW页面访问的大致过程如下：用户在浏览器中输入要访问的WWW页面的 _____ 地址（<a href="http://hostname/directory/file）；浏览器通过" target="_blank" rel="noopener">http://hostname/directory/file）；浏览器通过</a> _____ 查询上述输入信息所指的Web服务器的IP地址；浏览器通过网络与IP地址处的Web服务器的 _____ 服务端口间建立一条 _____ 连接；浏览器依照相关协议发送 _____ 命令；Web服务器根据命令取出文档，发送回来；浏览器释放连接，显示文档。（<font color="red"><strong>URL；DNS；HTTP；TCP；GET</strong></font>）</p>
+<p><strong>考题九</strong>：</p>
+<p>在TCP/IP网络中，为各种公共服务保留的端口号范围是 _____ 。（<font color="red"><strong>B</strong></font>）</p>
+<p>A、1~255</p>
+<p>B、1~1203</p>
+<p>C、1~1024</p>
+<p>D、1~65535</p>
+<blockquote>
+<p>注：</p>
+<p>保留端口：事先规定的，并且所有用户进程都熟知的，数值为1~1023</p>
+<p>自由端口：那些可以随时用来分配给请求通信的用户进程所用的端口，端口范围是1024~65535</p>
+</blockquote>
+<h2 id="C-S模式和B-S模式"><a href="#C-S模式和B-S模式" class="headerlink" title="C/S模式和B/S模式"></a>C/S模式和B/S模式</h2><ol>
+<li><p><strong>C/S模式</strong></p>
+<p>客户/服务器模式，也称为两层结构，若想访问服务器必须通过客户端（服务器一直运行着，客户端在需要使用的时候运行）。</p>
+<p>数据库服务器（DBMS Server），负责与数据库存取有关的部分。</p>
+<p>客户（Client），负责与应用的人机界面处理、输入/输出或一部分应用的逻辑功能等有关的内容</p>
+<p>随着新的应用在服务器上成倍的增加，连接到服务器上的客户机也在日益增多，这就使得服务器很快地进入了超负荷运行状态，而且升级的速度赶不上需求增长的速度，成为了一个瓶颈问题，为了解决这个问题提出了B/S模式</p>
+<p>MySQL数据库是一种C/S结构的软件。</p>
+</li>
+<li><p><strong>B/S模式</strong></p>
+<p>B/S结构是最经典的三层结构，它包括浏览器、web服务器、数据库服务器三部分组成。</p>
+<p><img src="http://pic.yuti.site/BS.jpg" alt="B/S结构"></p>
+<p>web服务器是B/S结构的核心，执行过程如下：</p>
+<ul>
+<li>用户通过浏览器想web服务器发出查询请求（HTTP协议、GET操作）</li>
+<li>web服务器需要再向数据服务器发出数据请求</li>
+<li>数据库服务器则根据检索与查询条件将相应的数据结果返回给web服务器</li>
+<li>web服务器将结果转成HTML返回给浏览器</li>
+</ul>
+</li>
+</ol>
+<p><strong>考题一</strong>：</p>
+<p>Browser/Server结构是把 _____ 技术和数据库技术结合起来的一种应用模式，这种应用模式把所有应用功能和数据库集中放在 _____ ，实现了开发环境与应用环境的分离，便于管理和系统维护。该模式最大的优点之一就是 _____ 。（<font color="red"><strong>Web；服务器端；客户端不用安装专用软件</strong></font>）</p>
+<blockquote>
+<p>注：Browser/Server结构为浏览器/服务器结构</p>
+</blockquote>
+<h2 id="IP地址划分"><a href="#IP地址划分" class="headerlink" title="IP地址划分"></a>IP地址划分</h2><p>IP协议给每台主机分配一个唯一的地址，这个地址叫IP地址。</p>
+<p>IP地址的长度为32位。</p>
+<p>此处D类地址、E类地址就不考虑了，主要考试C类比较多。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A类地址</th>
+<th style="text-align:center">B类地址</th>
+<th style="text-align:center">C类地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">适用范围</td>
+<td style="text-align:center">大的组织</td>
+<td style="text-align:center">中型组织</td>
+<td style="text-align:center">小型组织</td>
+</tr>
+<tr>
+<td style="text-align:center">高位数字</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">110</td>
+</tr>
+<tr>
+<td style="text-align:center">地址范围</td>
+<td style="text-align:center">1.0.0.0~126.0.0.0</td>
+<td style="text-align:center">128.1.0.0~191.254.0.0</td>
+<td style="text-align:center">192.0.1.0~223.225.254.0</td>
+</tr>
+<tr>
+<td style="text-align:center">网络/主机位</td>
+<td style="text-align:center">7/24</td>
+<td style="text-align:center">14/15</td>
+<td style="text-align:center">22/8</td>
+</tr>
+<tr>
+<td style="text-align:center">最大主机数</td>
+<td style="text-align:center">16777214</td>
+<td style="text-align:center">65534</td>
+<td style="text-align:center">254</td>
+</tr>
+</tbody>
+</table>
+<p><strong>考题一</strong>：</p>
+<p>一个局域网中某台主机的IP地址为176.68.160.12，使用22位作为网络地址，那么该局域网的子网掩码为 _____ ，最多可以连接主机数为 _____ 。（<font color="red"><strong>255.255.252.0;1022</strong></font>）</p>
+<blockquote>
+<p>注：</p>
+<p>子网掩码：网络地址补1，主机地址补0</p>
+<p>题中使用22位表示网络地址，因此子网掩码为11111111.11111111.11111100.00000000，转换为十进制为255.255.252.0</p>
+<p>余下的10个零的二进制部分表示为主机地址，可以表达的个数是2的10次方=1024</p>
+<p>由于全0和全1这两个地址是保留的，因此要减去，so，1024-2=1022</p>
+</blockquote>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/18/数据库的分组统计查询-软件评测师/">数据库的统计查询</a><a class="next" href="/2018/07/14/数据库的多表查询-Oracle/">数据库的多表查询</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>操作系统之设备管理 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统之设备管理</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统之设备管理</h1><div class="post-meta">Jul 10, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>设备管理是指操作系统对除CPU和内存之外所有设备的管理。</p>
+<h2 id="设备的分配"><a href="#设备的分配" class="headerlink" title="设备的分配"></a>设备的分配</h2><ol>
+<li><p>静态分配：</p>
+<p>用户在作业开始执行前，由系统一次分配该作业所需要的全部设备、控制器和通道。一旦分配，这些设备、控制器和通道就一直为该作业所占用，知道该作业被撤销。</p>
+<p>不会出现死锁现象，但是效率低。</p>
+</li>
+<li><p>动态分配：</p>
+<p>在进程执行过程中根据需要进行动态分配所需设备、I/O控制器和通道，用完之后，立即释放资源。</p>
+<p>有利于提高设备的利用率，但是如果分配算法使用不当，可能会造成进程死锁。</p>
+<p>常用的分配策略：先请求先分配；优先级高着先分配</p>
+</li>
+</ol>
+<h2 id="磁盘调度算法"><a href="#磁盘调度算法" class="headerlink" title="磁盘调度算法"></a>磁盘调度算法</h2><p>访问磁盘的时间因子：查找时间、等待时间、数据传输时间，其中查找时间是决定因子</p>
+<p><strong>考题</strong>：</p>
+<p>（1）假设磁盘的旋转速度为20ms/周，磁头当前处在R1的开始处。若系统顺序处理这些记录，使用单缓冲区，每个记录处理时间为4ms，则处理这10个记录的最长时间为 _____ ；若对信息存储进行优化分布后，处理10个记录的最少时间为 _____ 。（<font color="blue">204ms;60ms</font>）</p>
+<blockquote>
+<p>注：</p>
+<p>一条记录的时间 = 磁盘旋转的速度 / 记录总数 （20/10=2ms)</p>
+<p>读取记录R1需要2ms，处理记录R1需要4ms，则处理R1共需要6ms</p>
+<p>在读取并处理R1的过程中，磁头已经转到R4开始处，为了读取R2，必须再转8个记录。因此R2需要2*8+2+4=22ms</p>
+<p>so处理10个记录需要（2+4)+9*22=204ms</p>
+<p>最短情况为60ms</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">物理块</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">逻辑记录</td>
+<td style="text-align:center">R1</td>
+<td style="text-align:center">R8</td>
+<td style="text-align:center">R5</td>
+<td style="text-align:center">R2</td>
+<td style="text-align:center">R9</td>
+<td style="text-align:center">R6</td>
+<td style="text-align:center">R3</td>
+<td style="text-align:center">R10</td>
+<td style="text-align:center">R7</td>
+<td style="text-align:center">R4</td>
+</tr>
+</tbody>
+</table>
+<p>（2）某磁盘盘组共有10个盘面，每个盘面上有100个磁道，每个磁道有16个扇区。假定分配以扇区为单位。若使用位示图管理磁盘空间，则位示图需要占用 _____ 个字节空间。（<font color="blue">2000</font>）</p>
+<blockquote>
+<p>注：</p>
+<p>10 &#42; 100 &#42; 16 = 16000个扇区</p>
+<p>一个字节是8bit</p>
+<p>so，16000 / 8 = 2000</p>
+</blockquote>
+<h2 id="虚拟设备和Spooling技术"><a href="#虚拟设备和Spooling技术" class="headerlink" title="虚拟设备和Spooling技术"></a>虚拟设备和Spooling技术</h2><p>Spooling的意思是外部设备同时联机操作，又称为假脱机输入/输出操作，采用一组程序或进程模拟一台输入/输出处理器。</p>
+<p>Spooling技术利用了专门的外围控制机将低速I/O设备上的数据传送到高速设备上。</p>
+<p>Spooling系统必须有高速、大容量并且可随机存取的外存(磁盘或磁鼓)支持。</p>
+<p><strong>考题</strong>：</p>
+<p>（1）一台PC计算机系统启动时，首先执行的是 _____ ，然后加载_____ 。在设备管理中，虚拟设备的引入和实现是为了充分利用设备，提高系统效率，采用 _____ 来模拟低速设备(输入设备或打印机)的工作。(答案：<font color="blue">BIOS引导程序； 主引导记录和引导驱动器的分区表，并执行主引导记录； Spooling技术，利用磁盘设备</font>)</p>
+<p>（2）由于内存大小有限，为使得一个或多个作业能在系统中运行，常需要外存来换取内存。其中以作业为单位对内外存进行交换的技术成为 _____ 技术，在作业内部对内外存进行交换的技术称为 _____ 技术。用外存换内存是以牺牲程序运行时间为代价的。为提高CPU的有效利用率，避免内外存的频繁交换， _____ 技术常用某种 _____ 来选择换出内存的页面，它的基础是程序 _____ 。据此，操作系统可根据 _____ 来改善系统的性能， _____ 是一个进程在定长的执行时间内涉及到页面的集合。(答案：<font color="blue">Swapping；虚拟存储；虚拟存储；页面淘汰策略；局部性；工作集；工作集</font>)</p>
+<blockquote>
+<p>注：</p>
+<p>在作业内部以“页”或“段”为单位进行部分信息的调入调出，这就是虚拟存储技术</p>
+<p>虚拟存储技术需要选择合适页面置换算法，即页面淘汰策略</p>
+<p>工作集是指进程运行时被频繁访问的页面集合</p>
+</blockquote>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/12/操作系统之文件管理-软件测评师/">操作系统之文件管理</a><a class="next" href="/2018/07/10/操作系统之存储管理-test/">操作系统之存储管理</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>程序设计语言知识 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">程序设计语言知识</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">程序设计语言知识</h1><div class="post-meta">Aug 5, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>有关程序语言的种类、特点、基本成分（函数、参数、语句和注释）及面向对象的基本概念等内容的出题频率比较高。</p>
+<p>关于编译原理（有限自动机和正规式）的理论知识的考点，对我来说是难点。</p>
+<h2 id="程序语言"><a href="#程序语言" class="headerlink" title="程序语言"></a>程序语言</h2><h3 id="程序设计语言的多角度分类"><a href="#程序设计语言的多角度分类" class="headerlink" title="程序设计语言的多角度分类"></a><font color="purple">程序设计语言的多角度分类</font></h3><p>一、 按语言级别分类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>低级语言</strong></td>
+<td style="text-align:center">机器语言、汇编语言</td>
+<td style="text-align:center">效率高</td>
+<td style="text-align:center">复杂、易出错且费时</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>高级语言</strong></td>
+<td style="text-align:center">java、javascript等</td>
+<td style="text-align:center">易学、易用、易维护</td>
+<td style="text-align:center">效率低</td>
+</tr>
+</tbody>
+</table>
+<p>二、 按照用户要求分类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>过程式语言</strong></td>
+<td style="text-align:center">FORTRAN、COBOL、ALGOL60等</td>
+<td style="text-align:center">有相应的计算过程</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>非过程式语言</strong></td>
+<td style="text-align:center">表格的生成程序（RPG）</td>
+<td style="text-align:center">无法指定相应的计算过程</td>
+</tr>
+</tbody>
+</table>
+<p>三、 按照应用范围分类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>通用语言</strong></td>
+<td style="text-align:center">FORTRAN、COBOL、ALGOL60、C++、java</td>
+<td style="text-align:center">目标非单一的语言</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>专用语言</strong></td>
+<td style="text-align:center">API</td>
+<td style="text-align:center">目标单一的语言</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注释：API第一个专用语言，用于数控机床加工</p>
+</blockquote>
+<p>四、 按照使用方式分类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>非交互式语言</strong></td>
+<td style="text-align:center">FORTRAN、COBOL、ALGOL60、C++、java</td>
+<td style="text-align:center">语言成分不反映人机交互</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>交互式语言</strong></td>
+<td style="text-align:center">BASIC语言</td>
+<td style="text-align:center">能反映人机交互</td>
+</tr>
+</tbody>
+</table>
+<p>五、 按照成分性质分类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>顺序语言</strong></td>
+<td style="text-align:center">FORTRAN、COBOL</td>
+<td style="text-align:center">只含有顺序成分的语言</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>并发语言</strong></td>
+<td style="text-align:center">ADA、MODULA</td>
+<td style="text-align:center">含有并发成分的语言</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>分布语言</strong></td>
+<td style="text-align:center">MODULA</td>
+<td style="text-align:center">考虑分布计算要求的语言</td>
+</tr>
+</tbody>
+</table>
+<p>六、 按照理论基础分类</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">特点</th>
+<th style="text-align:center">适用范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>函数式语言</strong></td>
+<td style="text-align:center">LISP</td>
+<td style="text-align:center">一类以λ演算为基础的语言</td>
+<td style="text-align:center">主要用于人工智能领域</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>逻辑型语言</strong></td>
+<td style="text-align:center">PROLOG</td>
+<td style="text-align:center">一类以形式逻辑为基础的语言</td>
+<td style="text-align:center">适用于书写自动定理证明、专家系统和自然语言理解等问题的程序</td>
+</tr>
+</tbody>
+</table>
+<p><strong>考题1</strong>：</p>
+<p>下面关于编程语言的各种说法中，_____ 是正确的。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. 由于C语言程序是由函数构成的，所以也属于函数型语言<br>B. Smalltalk、C++、Java、C#都是面向对象语言<br>C. 函数型语言适用于编写高速计算的程序，常用于超级计算机的模拟计算<br>D. 逻辑型语言是在Client/Server系统中用于实现负载分散的程序语言</p>
+<p><strong>考题2</strong>：</p>
+<p>开发专家系统时通过描述事实和规则由模式匹配得出结论，下面情况下适用的开发语言是 _____ 。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. 面向对象语言  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B. 函数式语言 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 过程式语言 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 逻辑式语言</p>
+<p><strong>考题3</strong>：</p>
+<p>关于汇编语言，一下叙述正确的是 _____ 。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. 汇编语言源程序可以直接在计算机上运行<br>B. 将汇编语言源程序转换成目标程序的软件称为“解释程序”<br>C. 在汇编语言程序中，不能定义符号常量<br>D. 将汇编语言源程序翻译成机器语言程序的软件称为“汇编程序”</p>
+<blockquote>
+<p>注：</p>
+<p>函数型语言是以λ演算为基础的语言，代表为LISP，主要用于人工智能领域</p>
+<p>逻辑型语言是以形式逻辑为基础的语言，适用于书写自动定理证明、专家系统和自然语言理解等问题的程序</p>
+<p>用符号代替机器语言的二进制码把机器语言变成了汇编语言；汇编语言可以直接控制计算机上的硬件</p>
+<p>汇编语言源程序不能直接在计算机上运行，必须翻译成机器语言才能执行</p>
+</blockquote>
+<h3 id="程序的基本成分"><a href="#程序的基本成分" class="headerlink" title="程序的基本成分"></a><font color="purple">程序的基本成分</font></h3><p><strong>考题1</strong>：</p>
+<p>程序中常采用变量表示数据，变量具有名、地址、值、作用域以及生存期等属性。关于变量的叙述，_____ 是错误的。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. 根据作用域规则，在函数中定义的变量只能在函数中引用<br>B. 在函数中定义的变量，其生存期为整个程序执行期间<br>C. 在函数中定义的变量不能与其所在函数的形参同名<br>D. 在函数中定义的变量，其存储单元在内存的栈区</p>
+<p><strong>考题2</strong>：</p>
+<p>函数调用时，基本的参数传递方式有传值与传地址两种 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 在传值方式下，形参将值传给实参<br>B. 在传值方式下，实参不能是数组<br>C. 在传地址方式下，形参和实参间可以实现数据的双向传递<br>D. 在传地址方式下，实参可以是任意的变量和表达式</p>
+<p><strong>考题3</strong>：</p>
+<p>函数t()和f()的定义如下所示。若调用函数t()时传递给x的值为3<br>，并且调用函数f()时第一个参数采用传值的方式，第二个参数采用传引用的方式，则函数t()的返回值为 _____ 。(答案: <font color="red"><strong>B</strong></font>)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">t(<span class="keyword">int</span> x):</span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line">a = <span class="number">3</span> * x - <span class="number">1</span>;</span><br><span class="line">f(x, a);</span><br><span class="line"><span class="keyword">return</span> a + x;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">f(<span class="keyword">int</span> r, <span class="keyword">int</span> s):</span><br><span class="line"><span class="keyword">int</span> x;</span><br><span class="line">x = <span class="number">2</span> * r + <span class="number">1</span>;</span><br><span class="line">s = x * r;</span><br><span class="line">r = s - x;</span><br><span class="line"><span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+<p>A. 35 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B.24 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 22 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 11  </p>
+<p><strong>考题4</strong>：</p>
+<p>序言性注释是指在每个程序或模块开头的一段说明，起辅助理解程序的作用，一般包括：程序的表示、名称和版本号；程序功能描述；接口与界面描述；输入/输出数据说明；开发历史；与运行环境有关的信息等。下面叙述中不属于序言性注释的是 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 程序对硬件、软件资源的要求<br>B. 重要变量和参数说明<br>C. 嵌入在程序中的SQL语句<br>D. 程序开发的原作者、审查者、修改者、编程日期等</p>
+<blockquote>
+<p>注释：</p>
+<p>序言性注释：位于每个模块的起始部位<br>功能性注释：嵌入在源程序内部，用来说明程序段或语句的功能，以及数据的状态</p>
+</blockquote>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="面向对象语言"><a href="#面向对象语言" class="headerlink" title="面向对象语言"></a><font color="purple">面向对象语言</font></h3><p>面向对象语言是以对象作为基本程序结构单位的程序设计语言，设计以对象为核心。对象是程序运行时刻的基本成分，语言中提供了类、继承等成分。</p>
+<p>面向对象语言的发展有两个方向：</p>
+<p>一、纯面向对象语言，如Smalltalk以及EIFFEL<br>二、混合型面向对象语言，即过程式语言及其他语言中加入类及继承等成分</p>
+<p><strong>考题1</strong>：</p>
+<p>下面中叙述错误的是 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 面向对象程序设计语言可支持过程化的程序设计<br>B. 给定算法的时间复杂性与实现该算法所采用的程序设计语言无关<br>C. 与汇编语言相比，采用脚本语言编程可以获得更高的运行效率<br>D. 面向对象程序设计语言不支持对一个对象的成员变量进行直接访问</p>
+<blockquote>
+<p>注释： 算法有时间复杂度和空间复杂度<br>时间复杂度跟执行过程中的基本操作执行次数有关</p>
+</blockquote>
+<p><strong>考题2</strong>：</p>
+<p>_____ 是面向对象程序设计语言不同与其他语言的主要特点，是否建立了丰富的 _____ 是衡量一个面向对象程序设计语言成熟与否的重要标志之一。(答案: <font color="red"><strong>A、B</strong></font>)</p>
+<p>（1）A. 继承性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B.消息传递性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 多态性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 静态联编<br>（2）A. 函数库 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B.类库 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 类型库 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 方法库   </p>
+<p><strong>考题3</strong>：</p>
+<p>在面向对象的语言中， _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 类的实例化是指为类的实例分配存储空间<br>B. 每一类都必须创建一个实例<br>C. 每一类只能创建一个实例<br>D. 类的实例化是指初始化类</p>
+<h3 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a><font color="purple">脚本语言</font></h3><p>脚本语言一般有相应的脚本引擎来解释执行，由于是一种解释性语言，所以一般需要解释器才能运行</p>
+<p><strong>考题1</strong>：</p>
+<p>在下面关于程序语言的叙述中，错误的是 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 脚本语言属于动态的语言，其程序结构可以在运行中改变<br>B. 脚本语言一般通过脚本引擎解释执行，不产生独立保存的目标程序<br>C. PHP和Javascript属于静态语言，其所以成分可在编译时确定<br>D. C语言属于静态语言，其所以成分可在编译时确定</p>
+<blockquote>
+<p>注释：脚本语言一般是动态语言，通过解释器解释执行，不需要编译成目标程序<br>C和C++是典型的静态语言，需要编译后才能执行</p>
+</blockquote>
+<p><strong>考题2</strong>：</p>
+<p> _____ 属于系统软件，她直接执行高级语言源程序或与源程序等价的某种中间代码。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. 编译程序 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B. 预处理程序 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 汇编程序 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 解释程序</p>
+<blockquote>
+<p>注：用高级语言编写的源程序通常有两种方式在计算机上执行<br>一是解释方式，即计算机运行解释程序，人机交互好，调试程序时，可一边执行，一边修改，可让解释执行中间代码<br>二是编译方式，即运行编译程序，目标运行程序快，但是修改源程序后，必须重新编译以产生新的目标程序</p>
+</blockquote>
+<p><strong>考题3</strong>：</p>
+<p> 编译高级语言源程序时，可发现源程序中的 _____ 错误。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. 堆栈溢出 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B. 变量未定义 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 指针异常 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 数组元素下标越界</p>
+<p><strong>考题4</strong>：</p>
+<p>目前比较热门的软件开发工具，如VB、PB以及Delphi等都是可视化的，这些工具都是一种 _____ 程序语言。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. 事件驱动 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B. 逻辑式 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 函数式 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 命令式</p>
+<h2 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h2><p>有限自动机转换成正规式就是讲图形形式转换成表达式</p>
+<p>每个句型对应一棵语法树<br>每棵语法树的叶子结点从左到右排列构成一个句型<br>每棵语法树的子树的叶子结点从左到右排列构成一个短语<br>每棵语法树的简单子树（只有父子两层结点）的叶子结点从左到右排列构成一个简单(直接)短语<br>每棵语法树的最左简单子树（只有父子两层结点）的叶子结点从左到右排列构成句柄<br>素短语是至少包含一个终结符的短语，但它不能包含其它素短语<br>最左推导：在每个推导过程中，总是首先考虑对当前最左边的非终结符号进行推导<br>最右推导：在每个推导过程中，总是首先考虑对当前最右边的非终结符号进行推导</p>
+<p><strong>考题1</strong>：</p>
+<p>文法G[S]:S-&gt;xSx|y所描述的语法是 _____ 。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. (xyx)<sup>n</sup> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B. xyx<sup></sup> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. xy<sup>n</sup>x &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. x<sup>n</sup>yx<sup>n</sup></p>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/08/25/研一的暑假/">研一的暑假</a><a class="next" href="/2018/07/31/黑白盒测试用例设计考题-软件测评师/">黑白盒测试用例设计考题</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>数据库的统计查询 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数据库的统计查询</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">数据库的统计查询</h1><div class="post-meta">Jul 18, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>掌握一些统计函数的使用，能更方便我们查询数据。</p>
+<h2 id="统计函数"><a href="#统计函数" class="headerlink" title="统计函数"></a>统计函数</h2><ol>
+<li>COUNT()：求出全部的记录数</li>
+<li>SUM()：求出总和，操作的列是数字</li>
+<li>AVG()：平均值</li>
+<li>MAX()：最大值</li>
+<li>MIN()：最小值</li>
+<li>MEDIAN()：返回中间值</li>
+<li>VARIANCE()：返回方差</li>
+<li>STDDEV()：返回标准差</li>
+</ol>
+<p>从SQL标准规定来讲，实际上只有前5个是标准函数。</p>
+<p><strong>范例</strong>：</p>
+<ol>
+<li><p>查询出公司每个月支出的月工资总和</p>
+<p><code>SELECT SUM(sal) FROM emp;</code></p>
+</li>
+<li><p>查询出公司的最高工资、最低工资、平均工资</p>
+<p><code>SELECT MAX(sal), MIN(sal), AVG(sal), ROUND(AVG(sal),2) FROM emp;</code></p>
+<p>其中ROUND()表示的是取两位小数</p>
+</li>
+<li><p>统计出公司的雇员人数</p>
+<p><code>SELECT COUNT(*), COUNT(empno), COUNT(DISTINCT job) FROM emp;</code></p>
+<p>注：对于COUNT()函数而言，可以传递三类内容：*、字段、DISTICT 字段；而且在所有统计函数当中，只有COUNT()函数可以在表中没有任何数据的时候依然返回内容，即返回0，其他则返回null。</p>
+<p><strong>面试题</strong>：</p>
+<p>题目：请问COUNT(*), COUNT(字段), COUNT(DISTINCT 字段)有什么区别？</p>
+<p>答案：在使用COUNT(字段)的时候，如果列上存在了null，那么null是不会进行统计的，如果存在重复，重复的记录也不统计。</p>
+</li>
+</ol>
+<h2 id="GROUP-BY分组"><a href="#GROUP-BY分组" class="headerlink" title="GROUP BY分组"></a>GROUP BY分组</h2><p>是否能进行分组：判断表中是否有一列或多列数据重复</p>
+<p>子句的执行顺序：FROM、WHERE、GROUP BY、SELECT、ORDER BY</p>
+<p><strong>分组统计简单范例</strong>:</p>
+<ol>
+<li><p>统计出每个部门的人数</p>
+<p>分析：此时一定需要按照部门的信息分组，在emp表中，每个雇员的部门都使用一个部门编号表示。那么就可以针对deptno字段来实现分组。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> deptno, <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>分组的若干个限制</strong>：</p>
+<ul>
+<li>注意事项一：如果在一个查询之中不存在GROUP BY子句，那么SELECT子句只允许出现统计函数，其他的任何字段都不允许出现</li>
+<li>注意事项二：在统计查询之中（存在了GROUP BY子句），SELECT子句之中只允许出现分组字段（GROUP BY之后定义的字段）和统计函数，其他的任何字段都不允许出现</li>
+<li><p>注意事项三：所有统计函数允许嵌套使用，但是一旦使用了嵌套的统计函数之后，SELECT子句之中不允许再出现任何的字段，包括分组字段</p>
+<p> <strong>注意事项三的范例</strong>：求出每个部门平均工资的最高工资</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MAX</span>(<span class="keyword">AVG</span>(sal))</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>分组统计复杂范例</strong>：</p>
+<ol>
+<li><p>查询每个部门的名称、部门人数、部门平均工资、平均服务年限</p>
+<ul>
+<li><p>步骤一：将dept表和emp表一起进行查询，暂时不分组 – 查询每个部门的名称、雇员编号、工资、雇佣日期</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.dname, e.empno, e.sal, e.hiredate</span><br><span class="line"><span class="keyword">FROM</span> dept d, emp e</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>步骤二：观察现在的dname字段（查询结果，理解为临时表），既然有重复的列就可以进行分组，针对于临时表数据进行分组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.dname, <span class="keyword">COUNT</span>(e.empno), </span><br><span class="line">       <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(e.sal), <span class="number">2</span>),  </span><br><span class="line">       <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(MONTHS_BETWEEN(SYSDATW,e.hiredate)/<span class="number">12</span>),<span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span> dept d, emp e</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.dname;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>步骤三：针对部门信息是包含四个部门信息，可是上面结果只有三个部门的信息，因此需要加入外连接显示第四个部门的统计</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.dname, <span class="keyword">COUNT</span>(e.empno), </span><br><span class="line">       <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(e.sal), <span class="number">2</span>), </span><br><span class="line">       <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(MONTHS_BETWEEN(SYSDATW,e.hiredate)/<span class="number">12</span>),<span class="number">2</span>)</span><br><span class="line"><span class="keyword">FROM</span> dept d, emp e</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno(+) = d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.dname;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="多字段分组"><a href="#多字段分组" class="headerlink" title="多字段分组"></a>多字段分组</h2><p><strong>范例</strong>：</p>
+<ol>
+<li><p>查询出每个部门的详细信息</p>
+<p><strong>分析</strong>：</p>
+<ul>
+<li><p>一定要包含的是：部门编号、名称、位置、平均工资、总工资、最高工资、最低工资、部门人数</p>
+</li>
+<li><p>肯定不止一张表</p>
+</li>
+</ul>
+<p><strong>步骤</strong>：</p>
+<ul>
+<li><p>步骤一：将题目要求转换、将emp表和dept表关联，查询出部门编号、名称、位置、雇员编号、姓名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno, d.dname, d.loc, e.empno, e.ename</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>步骤二：使用多字段分组(此处有三个地方重复)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno, d.dname, d.loc, <span class="keyword">COUNT</span>(e.empno), <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(e.sal),<span class="number">2</span>), <span class="keyword">SUM</span>(e.sal), <span class="keyword">MAX</span>(e.sal), <span class="keyword">MIN</span>(e.sal)</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.deptno, d.dname, d.loc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>步骤三：使用外连接，因为此处部门信息不全</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno, d.dname, d.loc, <span class="keyword">COUNT</span>(e.empno), <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(e.sal),<span class="number">2</span>), <span class="keyword">SUM</span>(e.sal), <span class="keyword">MAX</span>(e.sal), <span class="keyword">MIN</span>(e.sal)</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno(+) = d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.deptno, d.dname, d.loc;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>步骤四：NVL处理，是null结果为0</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno, d.dname, d.loc, <span class="keyword">COUNT</span>(e.empno), NVL(<span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(e.sal),<span class="number">2</span>),<span class="number">0</span>), NVL(<span class="keyword">SUM</span>(e.sal),<span class="number">0</span>), NVL(<span class="keyword">MAX</span>(e.sal),<span class="number">0</span>), NVL(<span class="keyword">MIN</span>(e.sal),<span class="number">0</span>)</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno(+) = d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.deptno, d.dname, d.loc;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="HAVING子句"><a href="#HAVING子句" class="headerlink" title="HAVING子句"></a>HAVING子句</h2><p>目的：对分组子句进行过滤。（使用WHERE是不行的，因为WHERE执行顺序在GROUP BY之前）  </p>
+<p>HAVING子句必须和GROUP BY子句一起使用 </p>
+<p>子句的执行顺序：FROM、WHERE、GROUP BY、HAVING、SELECT、ORDER BY</p>
+<p><strong>范例</strong>：</p>
+<ol>
+<li><p>查询出所以平均工资大于2000的职位信息、平均工资、雇员人数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> job, <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(sal),<span class="number">2</span>), <span class="keyword">COUNT</span>(empno)</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> job</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">AVG</span>(sal) &gt; <span class="number">2000</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出至少有一个员工的所有部门编号、名称，并统计出这些部门的平均工资、最低工资、最高工资</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno, d.name, <span class="keyword">ROUND</span>(<span class="keyword">AVG</span>(sal),<span class="number">2</span>),<span class="keyword">MIN</span>(e.sal), <span class="keyword">MAX</span>(e.sal)</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno(+)=d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> d.deptno, d.dname</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(e.empno)&gt;<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/18/数据库的子查询-Oracle/">数据库的子查询</a><a class="next" href="/2018/07/17/计算机网络-软件评测师/">计算机网络</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

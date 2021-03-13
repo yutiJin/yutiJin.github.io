@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>数据库的单行函数 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数据库的单行函数</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">数据库的单行函数</h1><div class="post-meta">Jul 13, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>方便数据库的功能操作。</p>
+<p>验证一张真实的表，中间处理的数据量会很大，因此Oracle则提供了一个dual的数据表帮助用户进行验证，即dual为虚拟数据表。</p>
+<h2 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h2><h3 id="1-UPPER-amp-LOWER"><a href="#1-UPPER-amp-LOWER" class="headerlink" title="1. UPPER() &amp; LOWER()"></a><font color="brown">1. UPPER() &amp; LOWER()</font></h3><p>大写 &amp; 小写</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename=<span class="keyword">UPPER</span>(<span class="string">'smith'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="2-INITCAP"><a href="#2-INITCAP" class="headerlink" title="2. INITCAP()"></a><font color="brown">2. INITCAP()</font></h3><p>首字母大写</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename，INITCAP(ename) <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<h3 id="3-REPLACE"><a href="#3-REPLACE" class="headerlink" title="3. REPLACE()"></a><font color="brown">3. REPLACE()</font></h3><p>替换（要求将雇员姓名中所有的字母’A’替换成字母’_’）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename, <span class="keyword">REPLACE</span>(ename,<span class="string">'A'</span>,<span class="string">'_'</span>) <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<h3 id="4-LENGTH"><a href="#4-LENGTH" class="headerlink" title="4. LENGTH()"></a><font color="brown">4. LENGTH()</font></h3><p>长度（姓名长度为5的雇员）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">LENGTH</span>(ename)=<span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="5-SUBSTR"><a href="#5-SUBSTR" class="headerlink" title="5. SUBSTR()"></a><font color="brown">5. SUBSTR()</font></h3><p>截取操作（查出雇员姓名前三个字母是”JAM”的雇员信息）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> <span class="keyword">SUBSTR</span>(ename,<span class="number">0</span>,<span class="number">3</span>)=<span class="string">'JAM'</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>SUBSTR()函数有两种形式：</p>
+<p>从指定位置截取到结尾：SUBSTR(列名称 | 字符串，截取开始点)；</p>
+<p>截取部分的字符串：SUBSTR(列名称 | 字符串，截取开始点，截取个数)</p>
+</blockquote>
+<p>（显示每个雇员姓名以及其姓名的后三个字母）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename，<span class="keyword">SUBSTR</span>(ename, <span class="number">-3</span>) <span class="keyword">FROM</span> emp;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">SELECT</span> ename, <span class="keyword">SUBSTR</span>(ename, <span class="keyword">LENGTH</span>(ename)<span class="number">-2</span>) <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>Oracle – java</p>
+<p>一个面试题：</p>
+<p>请问Oracle中的SUBSTR()函数的下标开始点是从0开始还是从1开始</p>
+<p>答：可以设置为0也可以设置为1，即使使用了0，也会将其定义为1</p>
+</blockquote>
+<h3 id="6-ASCII"><a href="#6-ASCII" class="headerlink" title="6. ASCII()"></a><font color="brown">6. ASCII()</font></h3><p>返回指定字符的ASCII码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ASCII</span>(<span class="string">'A'</span>), <span class="keyword">ASCII</span>(<span class="string">'L'</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<h3 id="7-CHR"><a href="#7-CHR" class="headerlink" title="7. CHR()"></a><font color="brown">7. CHR()</font></h3><p>将ASCII码变回字符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CHR</span>(<span class="number">100</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<h3 id="8-TRIM"><a href="#8-TRIM" class="headerlink" title="8. TRIM()"></a><font color="brown">8. TRIM()</font></h3><ul>
+<li>去掉字符串左边空格 — LTRIM()</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">'    hello world    '</span>, <span class="keyword">LTRIM</span>(<span class="string">'    hello world    '</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>去掉字符串右边空格 — RTRIM()</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">'    hello world    '</span>, <span class="keyword">RTRIM</span>(<span class="string">'    hello world    '</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>去掉字符串左右两边空格 — TRIM()</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">'    hello world    '</span>, <span class="keyword">TRIM</span>(<span class="string">'    hello world    '</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>不管如何取消空格，中间的空格是无法消除掉的。</p>
+</blockquote>
+<h3 id="9-LPAD-、RPAD"><a href="#9-LPAD-、RPAD" class="headerlink" title="9. LPAD()、RPAD()"></a><font color="brown">9. LPAD()、RPAD()</font></h3><p>字符串左填充、字符串右填充</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELCET LPAD('Yuti',10,'*'),RPAD('Yuti',10,'*'),LPAD(RPAD('Yuti',10,'*'),16,'*') FROM dual;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：</p>
+<p>‘******Yuti’,</p>
+<p>‘Yuti******‘,</p>
+<p>‘******Yuti******‘</p>
+</blockquote>
+<h3 id="10-INSTR"><a href="#10-INSTR" class="headerlink" title="10.INSTR()"></a><font color="brown">10.INSTR()</font></h3><p>字符串查找</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">INSTR</span>(<span class="string">'Yuti Black'</span>,<span class="string">'Yuti'</span>),</span><br><span class="line">       <span class="keyword">INSTR</span>(<span class="string">'Yuti Black'</span>, <span class="string">'Black'</span>),</span><br><span class="line">       <span class="keyword">INSTR</span>(<span class="string">'Yuti Black'</span>, <span class="string">'BLACK'</span>)</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：1, 6, 0</p>
+<p>注：如果查找到要找的内容，那么此函数会返回位置，如果找不到，就返回0。</p>
+</blockquote>
+<h2 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h2><h3 id="1-ROUND"><a href="#1-ROUND" class="headerlink" title="1. ROUND()"></a><font color="brown">1. ROUND()</font></h3><p>小数进位</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">ROUND</span>(<span class="number">789.652</span>) 不保留小数,</span><br><span class="line">       <span class="keyword">ROUND</span>(<span class="number">789.652</span>,<span class="number">2</span>) 保留两位小数，</span><br><span class="line">       <span class="keyword">ROUND</span>(<span class="number">789.652</span>, <span class="number">-1</span>) 处理整数进位</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>答案： 789； 789.65； 790</p>
+</blockquote>
+<p>运用实例：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno, ename, job, hiredate, sal, <span class="keyword">ROUND</span>(sal/<span class="number">30</span>, <span class="number">2</span>) <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-TRUNC"><a href="#2-TRUNC" class="headerlink" title="2. TRUNC()"></a><font color="brown">2. TRUNC()</font></h3><p>小数不进位</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TRUNC(<span class="number">789.652</span>) 不保留小数,</span><br><span class="line">       TRUNC(<span class="number">789.652</span>,<span class="number">2</span>) 保留两位小数，</span><br><span class="line">       TRUNC(<span class="number">789.652</span>, <span class="number">-1</span>) 处理整数进位</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>答案： 790； 789.65； 780</p>
+</blockquote>
+<h3 id="3-MOD"><a href="#3-MOD" class="headerlink" title="3. MOD()"></a><font color="brown">3. MOD()</font></h3><p>取模,就是取余数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">MOD</span>(<span class="number">10</span>,<span class="number">3</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><p>如果要进行日期操作，那么一定会存在一个前提：必须知道当前日期。</p>
+<p>在Oracle中可以直接利用SYSDATE为列取得当前日期时间。</p>
+<p>所谓的为列是指：不是表中的列，但是又可以直接使用的列。</p>
+<h3 id="1-SYSDATE"><a href="#1-SYSDATE" class="headerlink" title="1. SYSDATE"></a><font color="brown">1. SYSDATE</font></h3><p>取得当前日期</p>
+<pre><code>SELECT SYSDATE FROM dual;
+</code></pre><p>​    </p>
+<p>三个日期操作公式：</p>
+<ul>
+<li>若干天前的日期：日期 - 数字；</li>
+<li>若干天后的日期：日期 + 数字；</li>
+<li>两个日期的天数间隔：日期 - 日期</li>
+</ul>
+<p>SELECT SYSDATE + 3 三天之后的日期,<br>       SYSDATE - 3 三天之前的日期<br>FROM dual; </p>
+<p>  实例：</p>
+<p>  （查询出每个雇员到今天为止的雇佣天数、以及十天前每个雇员的雇佣天数）</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno 雇员编号,</span><br><span class="line">       ename 雇员名字,</span><br><span class="line">       <span class="keyword">SYSDATE</span>-hiredate 雇佣天数,</span><br><span class="line">       (<span class="keyword">SYSDATE</span><span class="number">-10</span>)-hiredate 十天前雇佣天数</span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<br>如果想要计算天数唯一可以使用的公式就是“日期1-日期2”，那么日期1肯定使用SYSDATE取得当前的日期，而日期2就可以取得每一位雇员的雇佣日期。</p>
+<p>上面运算有小数点，因此进行如下修改</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno 雇员编号, ename 雇员名字,</span><br><span class="line"> 		 TRUNC(<span class="keyword">SYSDATE</span>-hiredate) 雇佣天数,</span><br><span class="line">		 TRUNC((<span class="keyword">SYSDATE</span><span class="number">-10</span>)-hiredate) 十天前雇佣天数 </span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<p>以上只是针对于当前日期的操作，而对于Oracle而言也提供相应的日期函数，之所以使用日期函数主要是避免闰年的问题，或者是一个月有28、29、30、31天的问题。通过日期函数的计算取得的日期时间是最准确的。</p>
+<h3 id="2-ADD-MONTHS"><a href="#2-ADD-MONTHS" class="headerlink" title="2. ADD_MONTHS()"></a><font color="brown">2. ADD_MONTHS()</font></h3><p>ADD_MONTHS(日期，数字)：在指定日期上加上指定的月数，求出新的日期；</p>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SYSDATE</span>, </span><br><span class="line">       ADD_MONTHS(<span class="keyword">SYSDATE</span>, <span class="number">3</span>) 三个月之后的日期,</span><br><span class="line">       ADD_MONTHS(<span class="keyword">SYSDATE</span>, <span class="number">-3</span>) 三个月之前的日期</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<p>实际运用：（要求显示所有雇员在被被雇佣三个月之后的日期）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno, ename, job, sal, hiredate, ADD_MONTHS(hiredate, <span class="number">3</span>) <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<h3 id="3-MONTHS-BETWEEN"><a href="#3-MONTHS-BETWEEN" class="headerlink" title="3. MONTHS_BETWEEN()"></a><font color="brown">3. MONTHS_BETWEEN()</font></h3><p>MONTHS_BETWEEN(日期1，日期2)：求出两个日期间的雇佣月数；</p>
+<h3 id="4-NEXT-DAY"><a href="#4-NEXT-DAY" class="headerlink" title="4. NEXT_DAY()"></a><font color="brown">4. NEXT_DAY()</font></h3><p>NEXT_DAY(日期，星期数)：求出下一个星期X的具体日期；</p>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">SYSDATE</span>, 当前日期</span><br><span class="line">       NEXT_DAY(<span class="keyword">SYSDATE</span>, <span class="string">'星期日'</span>) 下一个星期日的日期</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<h3 id="5-LAST-DAY"><a href="#5-LAST-DAY" class="headerlink" title="5. LAST_DAY()"></a><font color="brown">5. LAST_DAY()</font></h3><p>LAST_DAY(日期)：求出指定日期的最后一天日期；</p>
+<p>例子：</p>
+<pre><code>SELECT SYSDATE, LAST_DAY(SYSDATE) FROM dual;
+</code></pre><p>​<br>实际运用：（查询所有是在雇佣所在月的倒数第三天被公司雇佣的完整雇员信息）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno,ename,job,hiredate,<span class="keyword">LAST_DAY</span>(hiredate) </span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">LAST_DAY</span>(hiredate)<span class="number">-2</span>=hiredate;</span><br></pre></td></tr></table></figure>
+<p>一个有难度的范例：</p>
+<p>题目：查询出每个雇员的编号、姓名、雇佣日期、已雇佣的年数、月数、天数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno 雇员编号,ename 雇员姓名,hiredate 雇佣日期,</span><br><span class="line">	    TRUNC(MONTHS_BETWEEN(<span class="keyword">SYSDATE</span>,hiredate)/<span class="number">12</span>) 已雇佣年数,</span><br><span class="line">	    TRUNC(<span class="keyword">MOD</span>(MONTHS_BETWEEN(<span class="keyword">SYSDATE</span>,hiredate),<span class="number">12</span>)) 已雇佣月数,</span><br><span class="line">	    TRUNC(<span class="keyword">SYSDATE</span>-ADD_MONTHS(hiredate,MONTHS_BETWEEN(<span class="keyword">SYSDATE</span>,hiredate))) 已雇佣天数</span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<h3 id="6-EXTRACT"><a href="#6-EXTRACT" class="headerlink" title="6. EXTRACT()"></a><font color="brown">6. EXTRACT()</font></h3><p>EXTRACT(格式 FROM 数据)：日期时间分割，或计算给定两个日期的间隔</p>
+<p>例子：分别取出年、月、日、时、分、秒</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">EXTRACT</span>(<span class="keyword">YEAR</span> <span class="keyword">FROM</span> SYSTIMESTAMP) <span class="keyword">years</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="keyword">MONTH</span> <span class="keyword">FROM</span> SYSTIMESTAMP) <span class="keyword">months</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="keyword">DAY</span> <span class="keyword">FROM</span> SYSTIMESTAMP) <span class="keyword">days</span>,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="keyword">HOUR</span> <span class="keyword">FROM</span> SYSTIMESTAMP) hours,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="keyword">MINUTE</span> <span class="keyword">FROM</span> SYSTIMESTAMP) minutes,</span><br><span class="line">       <span class="keyword">EXTRACT</span>(<span class="keyword">SECOND</span> <span class="keyword">FROM</span> SYSTIMESTAMP) seconds</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<h2 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h2><h3 id="TO-CHAR"><a href="#TO-CHAR" class="headerlink" title="TO_CHAR()"></a><font color="brown">TO_CHAR()</font></h3><ul>
+<li><p>将数据类型变为字符串（需要两个参数：日期数据、转换格式）</p>
+<ul>
+<li><p>范例：</p>
+<pre><code>SELECT SYSDATE 当前系统时间,
+     TO_CHAR(SYSDATE, &apos;YYYY-MM-DD&apos;) 格式化日期,
+     TO_CHAR(SYSDATE, &apos;YYYY-MM-DD HH24:MI:SS&apos;) 格式化日期时间
+  FORM dual;
+</code></pre></li>
+</ul>
+<ul>
+<li><p>实例：（查询所有在每年2月份雇佣的雇员信息）</p>
+<pre><code>SELECT * FROM emp WHERE TO_CHAR(hiredate, &apos;MM&apos;)=&apos;02&apos;;
+</code></pre></li>
+<li><p>年月日的拆分</p>
+<pre><code>SELECT empno,ename,job,hiredate,
+       TO_CHAR(hiredate,&apos;YYYY&apos;) 年,
+       TO_CHAR(hiredate,&apos;MM&apos;) 月,
+       TO_CHAR(hiredate,&apos;DD&apos;) 日
+FROM emp;
+</code></pre></li>
+</ul>
+</li>
+<li><p>数字格式化（最重要的功能）</p>
+<ul>
+<li><p>范例：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TO_CHAR(<span class="number">987654321.789</span>,<span class="string">'999,999,999,999.9999'</span>) 格式化数字,</span><br><span class="line">       TO_CHAR(<span class="number">987654321.789</span>,<span class="string">'000,000,000,000.0000'</span>) 填零格式化,</span><br><span class="line">       TO_CHAR(<span class="number">987654321.789</span>,<span class="string">'L999,999,999,999.9999'</span>) 显示货币,</span><br><span class="line">       TO_CHAR(<span class="number">987654321.789</span>,<span class="string">'$999,999,999,999.9999'</span>) 显示美元</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注：结果如下</p>
+<p>987,654,321,7890</p>
+<p>000,987,654,321.7890</p>
+<p>￥987,654,321,7890</p>
+<p>$987,654,321,7890</p>
+</blockquote>
+<p>​    </p>
+<h2 id="通用函数"><a href="#通用函数" class="headerlink" title="通用函数"></a>通用函数</h2><p>Oracle中特有的函数</p>
+<h3 id="1-NVL"><a href="#1-NVL" class="headerlink" title="1. NVL()"></a><font color="brown">1. NVL()</font></h3><p>处理null数据（如果为null，那么就将其变为0，如果不是null，就继续使用指定的数值）</p>
+<pre><code>SELECT NVL(null, 0), NVL(3,0) FROM dual;
+</code></pre><p>具体实例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> empno,ename,job,hiredate,(sal+NVL(comm,<span class="number">0</span>))*<span class="number">12</span> 年薪, sal, comm <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+<h3 id="2-NVL2"><a href="#2-NVL2" class="headerlink" title="2. NVL2()"></a><font color="brown">2. NVL2()</font></h3><p>跟NVL()相比多了一个判断</p>
+<p>具体实例：</p>
+<pre><code>SELECT empno,ename,job,hiredate,NVL2(comm, sal+comm, sal)*12 年薪, sal, comm FROM emp;
+</code></pre><h3 id="3-NULLIF"><a href="#3-NULLIF" class="headerlink" title="3. NULLIF()"></a><font color="brown">3. NULLIF()</font></h3><p>NULLIF(表达式一，表达式二)函数的主要功能判断两个表达式的结果是否相等，如果相等则返回NULL，不相等则返回表达式一。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">NULLIF</span>(<span class="number">1</span>,<span class="number">1</span>), <span class="keyword">NULLIF</span>(<span class="number">1</span>,<span class="number">2</span>) <span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+<h3 id="4-DECODE"><a href="#4-DECODE" class="headerlink" title="4. DECODE() "></a><font color="brown">4. DECODE() </font></h3><p>在Oracle中最重要的函数。在JAVA语言中，if…else判断的都是逻辑条件，而在DECODE()中判断的都是数值</p>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DECODE</span>(<span class="number">2</span>, <span class="number">1</span>, <span class="string">'内容一'</span>, <span class="number">2</span>, <span class="string">'内容二'</span>) <span class="keyword">FROM</span> dual;  (结果： 内容二)</span><br></pre></td></tr></table></figure>
+<p>范例：（要求可以查询雇员的姓名、职位、基本工资等信息，但是要求将所有的职位信息都替换成中文显示）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename, sal,</span><br><span class="line">	    <span class="keyword">DECODE</span>(job, <span class="string">'CLERK'</span>, <span class="string">'业务员'</span>,</span><br><span class="line">	                <span class="string">'SALESMAN'</span>, <span class="string">'销售人员'</span>,</span><br><span class="line">	                <span class="string">'MANAGER'</span>, <span class="string">'经理'</span>,</span><br><span class="line">	                <span class="string">'ANALYST'</span>,<span class="string">'分析员'</span>,</span><br><span class="line">	                <span class="string">'PRESIDENT'</span>,<span class="string">'总裁'</span>) job</span><br><span class="line"><span class="keyword">FROM</span> dual;</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/14/数据库的多表查询-Oracle/">数据库的多表查询</a><a class="next" href="/2018/07/13/数据库的基本语句-软件评测师/">数据库的基本语句</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

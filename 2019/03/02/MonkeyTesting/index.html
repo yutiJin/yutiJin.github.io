@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>自动化测试移动端Monkeytest | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">自动化测试移动端Monkeytest</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">自动化测试移动端Monkeytest</h1><div class="post-meta">Mar 2, 2019<span> | </span><span class="category"><a href="/categories/Monkey/">Monkey</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><h3 id="1、Sdk环境搭建"><a href="#1、Sdk环境搭建" class="headerlink" title="1、Sdk环境搭建"></a>1、Sdk环境搭建</h3><p>这个很简单，主要是我之前讲了很多，这里就不赘述了。<a href="https://pan.baidu.com/s/1SvuzZm4m1YMgi2bpCgbQLQ" target="_blank" rel="noopener">SDK</a>(m2w9)，下载解压即可使用。</p>
+<h3 id="2、设备连接"><a href="#2、设备连接" class="headerlink" title="2、设备连接"></a>2、设备连接</h3><p>检查手机是否连接成功，很重要哦，如果设备都没连接上，那其他都是白搭。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<h3 id="3、monkey测试命令"><a href="#3、monkey测试命令" class="headerlink" title="3、monkey测试命令"></a>3、monkey测试命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell monkey -p appPackage -v 5000 &gt; text.txt</span><br></pre></td></tr></table></figure>
+<p>查询方式：<small>  (adb shell &amp; dumpsys window windows | grep -i current)</small></p>
+<p>想知道appPackage是什么的，请看<a href="https://yuti.site/2019/02/22/RF-Appium/">RobotFramework+Appium</a>的环境搭建这篇文章</p>
+<h3 id="4、参数"><a href="#4、参数" class="headerlink" title="4、参数"></a>4、参数</h3><p>是不是觉得很简单，下面我们来仔细分析一下不同参数具体代表什么：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-p</td>
+<td style="text-align:left">用此参数指定一个或多个包，不指定包则会启动设备中的所有App</td>
+</tr>
+<tr>
+<td style="text-align:center">-v</td>
+<td style="text-align:left">用来指定log日志的详细程度，分三个级别</td>
+</tr>
+<tr>
+<td style="text-align:center">-s</td>
+<td style="text-align:left">用于指定伪随机数生成器的seed值，如果seed相同，则两次monkey测试所产生的时间序列也是相同的</td>
+</tr>
+<tr>
+<td style="text-align:center">–throttle</td>
+<td style="text-align:left">用于指定用户操作间的延迟，单位为毫秒</td>
+</tr>
+<tr>
+<td style="text-align:center">–ignore-crashes</td>
+<td style="text-align:left">用于指定当应用程序奔溃时（force&amp;close错误），monkey是否停止运行</td>
+</tr>
+</tbody>
+</table>
+<p>补充日志级别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">日志级别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Level0</td>
+<td>仅提供启动提示、测试完成、测试结果等少量信息  -v</td>
+</tr>
+<tr>
+<td style="text-align:center">Level1</td>
+<td>提供较为详细的日志，包括每个发送到activity的事件信息  -v -v</td>
+</tr>
+<tr>
+<td style="text-align:center">Level2</td>
+<td>最为详细的日志，包括了测试中选中或未选中的activity信息  -v -v -v</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5、测试结果分析"><a href="#5、测试结果分析" class="headerlink" title="5、测试结果分析"></a>5、测试结果分析</h3><p>可对text.txt进行如下分析：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">bug类别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Monkey finished</td>
+<td>表示测试过程中没有异常，测试通过</td>
+</tr>
+<tr>
+<td style="text-align:center">CRASH</td>
+<td>表示测试时程序出现崩溃异常，测试不通过（在测试中这属于致命的bug，很值钱呢）</td>
+</tr>
+<tr>
+<td style="text-align:center">ANR</td>
+<td>表示测试过程中程序对象出现无响应的现象，测试不通过</td>
+</tr>
+<tr>
+<td style="text-align:center">Exception</td>
+<td>表示测试过程中出现的其他小问题</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>周四开会，老板要求我们要对APP进行Monkey测试，老板说，没问题吧，那，肯定没问题，不能做也能做啊。。。</p>
+</blockquote>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>👇下面这位说是参考我的，写过比我写的好太多了，唉，惭愧，惭愧</p>
+<p><a href="http://192.168.11.115:4000/2019/03/13/android-test-monkey-test/" target="_blank" rel="noopener">http://192.168.11.115:4000/2019/03/13/android-test-monkey-test/</a></p>
+</div><div class="tags"><a href="/tags/work/">work</a><a href="/tags/自动化测试/">自动化测试</a></div><div class="post-nav"><a class="pre" href="/2019/03/29/MonkeyRunner-Environment/">MonkeyRunner在Eclipse中的开发环境搭建步骤(兼.py文件的创建运行)</a><a class="next" href="/2019/02/22/RF-Appium/">RobotFramework+Appium的环境搭建</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

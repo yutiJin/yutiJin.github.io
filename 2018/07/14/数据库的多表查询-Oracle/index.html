@@ -1,0 +1,146 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>数据库的多表查询 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数据库的多表查询</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">数据库的多表查询</h1><div class="post-meta">Jul 14, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>之前的简单查询、限定查询、查询排序，都属于SQL的标准语句；</p>
+<p>这里的多表查询属于复杂查询。</p>
+<p>最主要的问题是：消除笛卡尔积的问题</p>
+<p>（只要增加一张表，那么就一定需要一个可以消除增加表所带来的笛卡尔积的问题的条件）</p>
+<h2 id="什么是多表查询？"><a href="#什么是多表查询？" class="headerlink" title="什么是多表查询？"></a>什么是多表查询？</h2><p>   在一条查询语句中，从多张表里一起取出所需要的数据，即在FROM子句之后跟上多个表。</p>
+<p>   会出现笛卡尔积现象，就是如果表A有n行记录，表B有m条记录，那么如果需要查询A、B两个表，那么就会有n * m条记录。因此需要添加类似于如下WHERE的条件，这条件叫等值关联。（这时候积只是不显示了，实际上还是存在的）</p>
+   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp,dept <span class="keyword">WHERE</span> emp.deptno=dept.deptno</span><br></pre></td></tr></table></figure>
+<p>   由于多张表之间可能会存在重名的字段，所以在进行重名字段访问的时候，前面需要加上表的名称，采用“表名称.字段”的方式来进行访问。</p>
+<h2 id="各种实例"><a href="#各种实例" class="headerlink" title="各种实例"></a>各种实例</h2><h3 id="一-单表查询"><a href="#一-单表查询" class="headerlink" title="一. 单表查询"></a><font color="palevioletred">一. 单表查询</font></h3><p><strong>题目一</strong>. 查询每个雇员的编号、姓名、职位、基本工资、部门名称、部门位置</p>
+<p>分析过程：</p>
+<ul>
+<li><p>确定所需的数据表：</p>
+<ul>
+<li>emp表：查询每个雇员的编号、姓名、职位、基本工资</li>
+<li>dept表：部门名称、部门位置</li>
+</ul>
+</li>
+<li><p>确定已知的关联字段：</p>
+<ul>
+<li>部门与雇员的关联：emp.deptno=dept.deptno</li>
+<li>执行步骤：FROM、WHERE、SELECT</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> emp.empno,emp.ename,emp.job,emp.sal,dept.dname,dept.loc</span><br><span class="line"><span class="keyword">FROM</span> emp,dept</span><br><span class="line"><span class="keyword">WHERE</span> emp.deptno=dept.deptno;</span><br></pre></td></tr></table></figure>
+<p>如果表名称很长，那么会很不方便，因此我们在多表查询时，会给表定义一个别名，如下。</p>
+<p>更新：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.empno,e.ename,e.job,e.sal,d.dname,d.loc</span><br><span class="line"><span class="keyword">FROM</span> emp e,dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno=d.deptno;</span><br></pre></td></tr></table></figure>
+<p><strong>题目二</strong>. 查出每个雇员的编号、姓名、雇佣日期、基本工资、工资等级</p>
+<p>分析过程：</p>
+<ul>
+<li><p>确定所需要的数据表：</p>
+<ul>
+<li>emp表：每个雇员的编号、姓名、雇佣日期、基本工资</li>
+<li>salgrade表：工资等级</li>
+</ul>
+</li>
+<li><p>确定已知的关联字段：</p>
+<ul>
+<li>雇员和工资等级：emp.sal BETWEEN salgrade.losal AND salgrade.hisal</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.empno,e.ename,e.hiredate,e.sal,s.grade</span><br><span class="line"><span class="keyword">FROM</span> emp e,salgrade s</span><br><span class="line"><span class="keyword">WHERE</span> e.sal <span class="keyword">BETWEEN</span> s.losal <span class="keyword">AND</span> s.hisal;</span><br></pre></td></tr></table></figure>
+<p>更新：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.empno,e.ename,e.hiredate,e.sal,</span><br><span class="line">       <span class="keyword">DECODE</span>(s.grade, <span class="number">1</span>, <span class="string">'E等工资'</span>, <span class="number">2</span>, <span class="string">'D等工资'</span>, <span class="number">3</span>, <span class="string">'C等工资'</span>, <span class="number">4</span>, <span class="string">'B等工资'</span>, <span class="number">5</span>, <span class="string">'A等工资'</span>) grade</span><br><span class="line"><span class="keyword">FROM</span> emp e,salgrade s</span><br><span class="line"><span class="keyword">WHERE</span> e.sal <span class="keyword">BETWEEN</span> s.losal <span class="keyword">AND</span> s.hisal;</span><br></pre></td></tr></table></figure>
+<h3 id="二-多表查询"><a href="#二-多表查询" class="headerlink" title="二. 多表查询"></a><font color="palevioletred">二. 多表查询</font></h3><p><strong>题目三</strong>：查询每个雇员的姓名、职位、基本工资、部门名称、工资等级</p>
+<p>分析过程：</p>
+<ul>
+<li><p>确定所需要的数据表：</p>
+<ul>
+<li>emp表：每个雇员的姓名、职位、基本工资</li>
+<li>dept表：部门名称</li>
+<li>salgrade表：工资等级</li>
+</ul>
+</li>
+<li><p>确定已知的关联字段：</p>
+<ul>
+<li>雇员和部门：emp.deptno=dept.deptno</li>
+<li>雇员和工资等级：emp.sal BETWEEN salgrade.losal AND salgrade.hisal</li>
+</ul>
+</li>
+</ul>
+<p>如果现在是多个消除笛卡尔积的条件，那么往往使用AND将这些条件连接在一起。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.ename,e.job,e.sal, d.dname, s.grade</span><br><span class="line">       <span class="keyword">DECODE</span>(s.grade, <span class="number">1</span>, <span class="string">'E等工资'</span>, <span class="number">2</span>, <span class="string">'D等工资'</span>, <span class="number">3</span>, <span class="string">'C等工资'</span>, <span class="number">4</span>, <span class="string">'B等工资'</span>, <span class="number">5</span>, <span class="string">'A等工资'</span>) grade</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d, salgrade s</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno=d.deptno <span class="keyword">AND</span> e.sal <span class="keyword">BETWEEN</span> s.losal <span class="keyword">AND</span> s.hisal;</span><br></pre></td></tr></table></figure>
+<h3 id="三-内连接、外连接"><a href="#三-内连接、外连接" class="headerlink" title="三. 内连接、外连接"></a><font color="palevioletred">三. 内连接、外连接</font></h3><ol>
+<li><p><strong>内连接</strong>：也称为等值连接，之前所有的实例都是内连接，只有满足条件的数据才会显示，只要有一点不满足就不会显示数据</p>
+</li>
+<li><p><strong>外连接</strong>：目的是为了显示那些不满足等值连接的数据，可分为左外丽连接、右外连接、全外连接</p>
+<ul>
+<li>左外连接：左关系属性=右关系属性(+)</li>
+<li>左外连接：左关系属性(+)=右关系属性</li>
+</ul>
+</li>
+</ol>
+<p>  例子：</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno=d.deptno(+)</span><br></pre></td></tr></table></figure>
+<h3 id="四-自身连接"><a href="#四-自身连接" class="headerlink" title="四. 自身连接"></a><font color="palevioletred">四. 自身连接</font></h3><p><strong>题目四</strong>：查询出每个雇员的编号、姓名及其上级领导的编号、姓名（其中上级领导的信息也在emp表中）</p>
+<p>分析过程：</p>
+<ul>
+<li><p>确定所需要的数据表：</p>
+<ul>
+<li>emp表：雇员的编号、姓名</li>
+<li>emp表：找到的领导的编号、姓名</li>
+</ul>
+</li>
+<li><p>确定已知的关联字段：</p>
+<ul>
+<li>雇员和领导：emp.mgr=emp.empno(雇员领导的编号=领导的编号)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.empno, e.ename, m.empno, m.ename</span><br><span class="line"><span class="keyword">FROM</span> emp e, emp m</span><br><span class="line"><span class="keyword">WHERE</span> e.mgr=m.empno(+)</span><br></pre></td></tr></table></figure>
+<h3 id="五-SQL-1999语法"><a href="#五-SQL-1999语法" class="headerlink" title="五. SQL:1999语法"></a><font color="palevioletred">五. SQL:1999语法</font></h3><ol>
+<li><p>交叉连接：主要功能是产生笛卡尔积</p>
+<p><code>SELECT * FROM emp CROSS JOIN dept;</code></p>
+</li>
+<li><p>自然连接：消除笛卡尔积</p>
+<p><code>SELECT * FROM emp NATURAL JOIN dept;</code></p>
+</li>
+<li><p>USING子句：没有关联字段，用USING子句进行笛卡尔积消除（设置连接字段)</p>
+<p><code>SELECT * FROM emp JOIN dept USING(deptno);</code></p>
+</li>
+<li><p>ON子句：设置连接条件</p>
+<pre><code>`SELECT * FROM emp e JOIN salgrade s ON(e.sal BETWEEN s.losal AND s.hisal);`
+</code></pre></li>
+<li><p>右外连接</p>
+<p><code>SELECT * FROM emp e RIGHT OUTER JOIN dept d ON(e.deptno=d.deptno);</code></p>
+</li>
+<li><p>左外连接</p>
+<p><code>SELECT * FROM emp e LEFT OUTER JOIN dept d ON(e.deptno=d.deptno);</code></p>
+</li>
+<li><p>右外连接</p>
+<p><code>SELECT * FROM emp e FULL OUTER JOIN dept d ON(e.deptno=d.deptno);</code></p>
+</li>
+</ol>
+<h3 id="六-数据的集合运算"><a href="#六-数据的集合运算" class="headerlink" title="六. 数据的集合运算"></a><font color="palevioletred">六. 数据的集合运算</font></h3><p>数据的集合操作指的是查询结果的操作。</p>
+<ol>
+<li>UNION(并集)：返回若干个查询结果的全部内容，但是重复元祖不显示</li>
+<li>UNION ALL(并集)：返回若干个查询结果的全部内容，重复元祖也会显示</li>
+<li>MINUS(差集)：返回若干个查询结果中的不同部分</li>
+<li>INTERSECT(交集)：返回若干个结果中的相同部分</li>
+</ol>
+<p>例子:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept</span><br><span class="line">  <span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dept <span class="keyword">WHERE</span> deptno=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：在以后进行查询操作编写过程中，建议尽量使用UNION或UNION ALL来代替OR</p>
+</blockquote>
+<p>范例：</p>
+<p>（查询所有销售人员和办事人员的信息）</p>
+<p><code>SELECT * FROM emp WHERE job=&#39;SALESMAN&#39; OR job=&#39;CLERK&#39;;</code></p>
+<p>或者</p>
+<p><code>SELECT * FROM emp WHERE job IN(&#39;SALESMAN&#39;, &#39;CLEKT&#39;);</code></p>
+<p>更改为：(改成这样，效率更高)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> job=<span class="string">'SALESMAN'</span> </span><br><span class="line">  <span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> job=<span class="string">'CLERK'</span>;</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/17/计算机网络-软件评测师/">计算机网络</a><a class="next" href="/2018/07/13/数据库的单行函数-软件评测师/">数据库的单行函数</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

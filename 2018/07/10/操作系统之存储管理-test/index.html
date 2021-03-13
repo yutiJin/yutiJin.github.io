@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>操作系统之存储管理 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统之存储管理</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统之存储管理</h1><div class="post-meta">Jul 10, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>存储管理主要是指对内存储器的管理，负责对内存的分配和回收、内存的保护和扩充。存储管理的目的是尽量提高内存的使用效率。</p>
+<h2 id="存储分配的四个算法"><a href="#存储分配的四个算法" class="headerlink" title="存储分配的四个算法"></a>存储分配的四个算法</h2><ol>
+<li>首次适应算法：把内存中的可用分区单独组成可用的分区表或可用分区自由链，按照起始地址递增的次序排列。每次按递增次序向后找，一旦找到大于或等于所要求内存长度的分区，则结束探索。从找到的分区中找出所要求的内存长度分配给用户，并把剩余的部分进行合并。</li>
+<li>循环适应算法：上述首次适应算法经常利用的是低地址空间，后面经常是比较大的空白区，为了使内存所有线性地址空间尽可能轮流使用到，每重新分配一次，都在当前之后寻找。</li>
+<li>最佳适应算法：是将输入作用放入主存中与它所需大小最接近的空白区中，使剩下的未用空间最小，该法要求空白区大小按从小到大次序组成空白区可用表或自由链。在进行分配时总是从最小的一个开始查询，因而找到的一个能满足要求的空白区就是最佳的一个。</li>
+<li>最差适应算法：分配时把一个作业程序放入主存中最不合适它的空白区，即最大空白区（空闲区）。</li>
+</ol>
+<p><strong>考题</strong>：</p>
+<p>（1）实存的存储分配算法用来决定输入的程序和数据放在主存的位置，采用“总是把程序装入主存中最大的空闲区域”的算法称为 _____ 。（<font color="blue">最差适应算法</font>）</p>
+<h2 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h2><h3 id="1-分页存储"><a href="#1-分页存储" class="headerlink" title="1. 分页存储"></a>1. 分页存储</h3><p><strong>分页存储的特点</strong>：</p>
+<ul>
+<li>采用动态地址变换会增加计算机成本并降低处理机的速度</li>
+<li>各种表格要占用一定容量的主存空间，而且还要花费一部分处理机时间用来建立和管理这些表格</li>
+<li>虽然碎片消除，但每个作业的最后一页一般都有不能充分利用的空白区</li>
+<li>存储扩充问题仍没有解决</li>
+</ul>
+<p><strong>页表</strong>：</p>
+<p>页表列出了<font color="blue">程序逻辑地址中的页号</font>与<font color="blue">主存中的物理地址块号</font>之间的对应关系，其中包含若干个表目。</p>
+<p>假设一个逻辑地址空间中的地址为A，页面的大小为L，则页号p和页内地址d可按照下面的式子求得：</p>
+<p>ｐ＝ Int[A/L]　　　　　即Ａ除以Ｌ后取整（2500 / 1kB = 2）</p>
+<p>ｄ＝ A mode L　　　　　即Ａ除以Ｌ的余数 (2500 % 1kB = 452)</p>
+<p>然后根据页号查页表得到物理块号b，计算得到物理地址 B = b * l + d。</p>
+<p><img src="http://pic.yuti.site/address.jpg" alt="逻辑地址到物理地址的转换"></p>
+<p><strong>考题</strong>：</p>
+<p>（1）页式存储系统的逻辑地址由页号和页内地址两个部分组成。假定页面的大小为4KB，地址变换过程如下图所示，其中逻辑地址用十进制表示。</p>
+<p>图中有效地址经过变换后，十进制物理地址a应为 _____ 。（<font color="blue">答案：33220 = 8 * 4KB + 452</font>）</p>
+<p><img src="http://pic.yuti.site/A.jpg" alt="地址变换"></p>
+<h3 id="2-分段存储"><a href="#2-分段存储" class="headerlink" title="2. 分段存储"></a>2. 分段存储</h3><p><strong>分段存储优点</strong>：</p>
+<ul>
+<li>消除了碎片</li>
+<li>信息的逻辑单位（提供了大容量的虚存）</li>
+<li>各程序的修改互不影响（动态的装入和链接）</li>
+<li>有利于信息共享</li>
+</ul>
+<p><strong>分段存储缺点</strong>：</p>
+<ul>
+<li>存储管理地址变化需要花费处理机较多时间处理</li>
+<li>存在抖动（后面介绍）</li>
+</ul>
+<h3 id="段页式存储管理-1"><a href="#段页式存储管理-1" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h3><p><strong>定义</strong>：它吸引了分段存储管理和分页存储管理各自的优点，在这种存储管理系统中处理机给出的有效地址被划分为3部分，即<font color="blue"><strong>段号、页号和页内地址</strong></font>。</p>
+<p><strong>考题</strong>：</p>
+<p>（1）当存储器采用段页式管理时，主存被划分为定长的 _____ ，程序按逻辑模块分成 _____ 。在某机器的多道程序环境下，每道程序还需要一个 _____ 作为用户标志号，每道程序都有对应的 _____ 。一个逻辑地址包括 _____ x、段号s、页号p和页内地址d这4部分。（<font color="blue"><strong>页、段、基号、一个段表和一组页表、基号</strong></font>）</p>
+<blockquote>
+<p>注：</p>
+<p>每道程序可以有多个段，但只有一个段表，每个程序可以有多个页表</p>
+</blockquote>
+<h3 id="页面调度"><a href="#页面调度" class="headerlink" title="页面调度"></a>页面调度</h3><p>如果选择的页面被频繁地装入和调出，这种现象称为“抖动”，应该减少和避免抖动现象。</p>
+<p>为了解决抖动现在，聪明的人们想出了这么多的方法：</p>
+<ul>
+<li>最优算法：选择不再使用或者最远的将来才会被使用的页，常用于淘汰算法的比较</li>
+<li>随机算法：随机选择被淘汰的页，开销小，但是可以选中立即要访问的页</li>
+<li>先进先出算法</li>
+<li>最近最少使用</li>
+<li>最不经常使用的页面先淘汰 </li>
+</ul>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/10/操作系统之设备管理-软件评测师/">操作系统之设备管理</a><a class="next" href="/2018/07/09/操作系统之处理机管理-test/">操作系统之处理机管理</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>黑白盒测试用例设计考题 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">黑白盒测试用例设计考题</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">黑白盒测试用例设计考题</h1><div class="post-meta">Jul 31, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>黑白盒测试用例设计这一部分知识点是出题份量和频率是最高的一部分了，好好对待哦~</p>
+<h2 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h2><p><strong>基本概念</strong>：测试用例是一个关于具体测试步骤的文档，描述了测试的输入参数、条件、配置以及<font color="blue"><strong>预期的结果</strong></font>。</p>
+<p><strong>考题1</strong>：</p>
+<p>测试用例是测试使用的文档化的细则，规定如何测试软件某项功能或功能组合。测试用例应该包括下列 _____ 内容的详细信息。(答案: <font color="red"><strong>B</strong></font>)</p>
+<ol>
+<li>测试用例目标和被测功能</li>
+<li>测试环境和其他条件</li>
+<li>测试数据和测试步骤</li>
+<li>测试记录和测试结果</li>
+</ol>
+<p>A. 1/2  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  B.1/2/3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 1/3/4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 1/2/3/4</p>
+<p><strong>考题2</strong>：</p>
+<p>软件测试的目的是 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 表明软件的正确性 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 评价软件质量</p>
+<p>C. 尽可能发现软件中的错误 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 判定软件是否合格</p>
+<p><strong>考题3</strong>：</p>
+<p>_____ 不属于功能测试用例构成元素。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. 测试数据 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 测试步骤 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 预期结果 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 实测结果 </p>
+<h2 id="黑盒测试"><a href="#黑盒测试" class="headerlink" title="黑盒测试"></a>黑盒测试</h2><p>黑盒测试方法中<strong>等价类划分法</strong>、<strong>边界值分析法</strong>、<strong>因果图法</strong>和<strong>场景法</strong>考的比较多。</p>
+<p><strong>考题1</strong>：</p>
+<p>以下 _____ 方法不是黑盒测试用例设计方法。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. 场景法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 边界值法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 因果图法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 路径法 </p>
+<h3 id="等价类划分法"><a href="#等价类划分法" class="headerlink" title="等价类划分法"></a><font color="blue">等价类划分法</font></h3><p><strong>思想</strong>：把程序的输入域划分成若干个部分，然后从每个部分中选取少数代表性数据作为测试用例。</p>
+<p><strong>6条确定等价类的规则</strong>：</p>
+<ol>
+<li>在输入条件规定了取值范围或值得个数的情况下，可以确立一个有效等价类和两个无效等价类</li>
+<li>在输入条件规定了输入值得集合或者规定了“必须如何”的条件下，可以确立一个有效等价类和一个无效等价类<br>（例子：规定考试成绩为“优”、“良”、“中”、“及格”、“不及格”，则可以确定5个有效等价类和1个无效等价类 ）  </li>
+<li>在输入条件是布尔量的情况下，可确定为一个有效等价类和一个无效等价类</li>
+<li>在规定了输入数据必须遵守的规则的情况下，可确立一个有效等价类（遵守规则）和若干个无效等价类（不同角度违反规则）</li>
+<li>如果某个输入条件规定处理的对象是表格，那么可以确定有一个有效等价类（表有一项或多项）和一个无效等价类（空表）</li>
+<li>如果某个输入条件规定输入的数据是整形，那么可以确定有3个有效类（正整数、零、负整数）和一个无效等价类（非整数）</li>
+</ol>
+<p><strong>利用等价类设计测试用例的步骤</strong>：</p>
+<ol>
+<li>为每一个有效等价类和无效等价类编号</li>
+<li>设计一个新的测试用例，以<font color="blue"><strong>尽可能多</strong></font>地覆盖尚未覆盖的有效等价类。重复这个步骤，直至所有有效等价类都被覆盖为止</li>
+<li>设计一个新的测试用例，使其仅覆盖<font color="blue"><strong>一个</strong></font>尚未被覆盖的无效测试用例,知道所有的无效等价类都被覆盖为止</li>
+</ol>
+<blockquote>
+<p>注：</p>
+<p>一个无效等价类对应一个测试用例</p>
+</blockquote>
+<p><strong>考题1</strong>：</p>
+<p>在某大学学籍管理信息系统中，假设学生年龄的输入范围为16~40，则根据黑盒测试中等价类划分技术，下面划分正确的是 _____ 。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. 可划分为2个有效等价类，2个无效等价类<br>B. 可划分为1个有效等价类，2个无效等价类<br>C. 可划分为2个有效等价类，1个无效等价类<br>D. 可划分为1个有效等价类，1个无效等价类</p>
+<p><strong>考题2</strong>：</p>
+<p>用等价类划分法设计8位长数字类型用户名登录操作的测试用例，应该分成 _____ 个等价区间。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 6</p>
+<blockquote>
+<p>注：</p>
+<p>8位 非8位 数字类型 非数字类型</p>
+</blockquote>
+<h3 id="边界值法"><a href="#边界值法" class="headerlink" title="边界值法"></a><font color="blue">边界值法</font></h3><p>人们在长期工作经验中得知，大量的错误是发生在输入或输出范围的边界上，而不是在输入范围的内部。</p>
+<p>边界值分析是一种补充等价类划分的测试用例设计技术，它是选择等价类边界的测试用例。</p>
+<p>边界值分析是在设计测试用例时，使用最多的一种黑盒测试方法。</p>
+<p><strong>规则</strong>：</p>
+<ol>
+<li>如果输入条件或输出条件规定了值得范围，则写出这个范围边界的测试用例，以及刚刚超出范围的测试用例。<br>（例如：考试成绩范围为0~100，则测试数据为0，100，-1，101） </li>
+<li>如果输入条件或输出条件规定了值得个数，则分别对值得最大个数、最小个数、以及稍大于最大个数、稍小于最大个数的状态写出测试用例。<br>（例如：运动员的参赛项目为1~3项，则测试数据为1，3，4，其中0不合适，因此没有纳入里头） </li>
+<li>如果程序的规格说明给出的输入域或输出域是有序集合（顺序文件、线性表、表格），则应选取集合的第一个元素和最后一个元素作为测试用例</li>
+</ol>
+<p><strong>考题1</strong>：</p>
+<p>用边界值分析法，假定X为整数，10 &lt;= X &lt;= 100,那么X在测试中应该取 _____ 边界值。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. X=10, X=100 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. X=9, X=10, X=100, X=101  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
+<p>C. X=10, X=11, X=99, X=100 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. X=9, X=10, X=50, X=100</p>
+<p><strong>考题2</strong>：</p>
+<p>下面为C语言程序，边界值问题可以定位在 _____ 。(答案: <font color="red"><strong>A</strong></font>)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">data</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">    data(i) = <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A. data(0) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. Data(1) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. Data(2) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. Data(3)</p>
+<blockquote>
+<p>注：</p>
+<p>该考题注意两点：</p>
+<p>一点：数组范围，数组从零开始计算</p>
+<p>第二点： 字母大小写</p>
+</blockquote>
+<p><strong>考题3</strong>：</p>
+<p>_____ 测试用例设计方法既可以用于黑盒测试，又可用于白盒测试。(答案: <font color="red"><strong>A</strong></font>)</p>
+<p>A. 边界值法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 基本路径法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 正交试验设计法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 逻辑覆盖法</p>
+<p><strong>考题4</strong>：</p>
+<p>假定X为整数类型变量。X &gt;= 1并且X &lt;= 10, 如果用边界值分析法，X在测试中应该取_____ 值。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. 1，10 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 0，1，10，11  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 1，11 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 1，5，10，11</p>
+<h3 id="因果图法（下午题会考）"><a href="#因果图法（下午题会考）" class="headerlink" title="因果图法（下午题会考）"></a><font color="blue">因果图法（下午题会考）</font></h3><p><strong>思想</strong>：在程序规格说明的的描述中找出因（输入条件）和果（输出条件或程序状态的改变），通过因果图转换成判定表</p>
+<p>因果图方法是根据输入与输出之间的因果关系来设计测试用例的</p>
+<p><strong>因果图导出测试用例的五个步骤</strong>：</p>
+<ol>
+<li>分析程序规格说明中的描述，判断哪些是原因，哪些是结果。原因常常是输入条件，结果是输出条件</li>
+<li>分析程序规格说明的描述，根据其原因和结果之间的关系，画出因果图</li>
+<li>根据程序规格说明给因果图画上约束条件</li>
+<li>把因果图转换成判定表</li>
+<li>为判定表中的每一列的表示情况设计测试用例</li>
+</ol>
+<p><strong>因果图的基本图形符号</strong>：Ci表示原因， Ei表示结果， 其中个结点表示状态，取0和1，0表示某状态不出现，1则表示某状态出现</p>
+<p><img src="http://pic.yuti.site/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%AC%A6%E5%8F%B7.png" alt="因果图的基本图形符号"></p>
+<p><strong>因果图的约束条件</strong>：原因有四种约束，结果则有一种约束</p>
+<p><img src="http://pic.yuti.site/%E7%BA%A6%E6%9D%9F%E7%AC%A6%E5%8F%B7.png" alt="因果图的约束符号"></p>
+<ol>
+<li>E: 表示a、b两个原因不会同时成立，两个钟最多有一个可能成立</li>
+<li>I: 表示a、b、c这3个原因中至少有一个必须成立</li>
+<li>O: 表示a和b当做必须有一个，且仅有一个成立</li>
+<li>R: 表示当a出现时，b必须出现</li>
+<li>M（屏蔽）: 表示当a是1时，b必须是0，当a是0时，b的值不确定</li>
+</ol>
+<p><strong>考题1</strong></p>
+<p>黑盒测试中，____ 是根据输出对输入的依赖关系设计测试用例。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 等价类 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 基本路径法 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 因果图 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 功能图法</p>
+<blockquote>
+<p>注：</p>
+<p>功能图法实际上是一种黑盒、白盒混合用例设计方法</p>
+</blockquote>
+<p><strong>下午题中可能存在的考试题型</strong>：</p>
+<ol>
+<li><p>应用中可能有多种输入条件，在什么情况下可采用因果图设计测试用例？</p>
+<p>答：有多个输入条件，且输出结果对输入条件有依赖关系</p>
+</li>
+<li><p>因果图导出测试用例的步骤？</p>
+<p>答： 见上5个步骤</p>
+</li>
+<li><p>分析输入条件和输出结果，填入表格中</p>
+</li>
+<li>将输入条件和输出结果填入对应的图表中</li>
+</ol>
+<h3 id="场景法（下午题会考）"><a href="#场景法（下午题会考）" class="headerlink" title="场景法（下午题会考）"></a><font color="blue">场景法（下午题会考）</font></h3><p>用例场景用来描述流经用例的路径，从用例开始到结束遍历这条路径上所有基本流和备选流</p>
+<p><img src="http://pic.yuti.site/%E5%9F%BA%E6%9C%AC%E6%B5%81%E5%92%8C%E5%A4%87%E9%80%89%E6%B5%81.png" alt="基本流和备选流"></p>
+<p><strong>基本流</strong>：直黑线，是经过用例最简单的路径</p>
+<p><strong>备选流</strong>：不同的彩色表示</p>
+<p>每个经过用例的路径，可以确定不同的测试用例场景</p>
+<p><strong>使用场景法设计测试用例的基本步骤</strong>：</p>
+<ol>
+<li>根据规格说明，描述出程序的基本流和各项备选流</li>
+<li>根据基本流和备选流确定场景</li>
+<li>对每一个场景生成相应的测试用例，可以采用矩阵或决策表来确定和管理测试用例</li>
+<li>对生成的测试用例进行复审，去掉多余或等价的测试用例，然后确定实际测试数据 </li>
+</ol>
+<p>因此上图5-10的用例场景：</p>
+<ol>
+<li>场景1：基本流</li>
+<li>场景2：基本流、备选流1；</li>
+<li>场景3：基本流、备选流1、备选流2；</li>
+<li>场景4：基本流、备选流3；</li>
+<li>场景5：基本流、备选流3、备选流1；</li>
+<li>场景6：基本流、备选流3、备选流1、备选流2；</li>
+<li>场景7：基本流、备选流4；</li>
+<li>场景8：基本流、备选流3、备选流4；</li>
+</ol>
+<p><strong>下午题中可能存在的考试题型</strong>：</p>
+<ol>
+<li><p>利用场景法设计测试用例，基本流用字母A表示，备选流用题干中描述对应编号表示<br><img src="http://pic.yuti.site/%E6%B5%81.png" alt="题目中的流"><br>答： </p>
+<ul>
+<li>场景1： A</li>
+<li>场景2： A、B</li>
+<li>场景3： A、C</li>
+<li>场景4： A、B、C</li>
+<li>场景5： A、D</li>
+<li>场景6： A、B、D</li>
+</ul>
+</li>
+<li><p>填写测试用例表，下图是一个例子</p>
+<p><img src="http://pic.yuti.site/%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E8%A1%A8.png" alt="测试用例考点范例"></p>
+</li>
+<li><p>可能和边界值分析一起出一个小考点</p>
+</li>
+</ol>
+<p><strong>综合考题</strong>：</p>
+<p>对于业务流清晰的系统可以利用 <strong>场景法</strong> 贯穿整个测试用例设计过程，在用例中综合使用各种测试方法，对于参数配置类的软件，要用 <strong>正交试验法</strong> 选择较少的组合方式达到最佳效果，如果程序的功能说明中含有输入条件的组合情况，则一开始就可以选用 <strong>因果图法</strong> 和判定表驱动法。</p>
+<h2 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h2><p>主要考的是逻辑覆盖法和基本路径法</p>
+<p>白盒测试主要考下午题为主，加油哦！</p>
+<h3 id="逻辑覆盖法"><a href="#逻辑覆盖法" class="headerlink" title="逻辑覆盖法"></a><font color="blue">逻辑覆盖法</font></h3><ol>
+<li>语句覆盖（SC）：被测程序的语句至少被执行一次</li>
+<li>判定覆盖（DC）：程序中每个判定true/false至少都获得一次</li>
+<li>条件覆盖（CC）：程序中每个判定里的每个条件都要获得至少一次的true/false</li>
+<li>条件判定覆盖（CDC）：判定覆盖 &amp; 条件覆盖</li>
+<li>多条件覆盖（MCC）：使得判定中条件的各种可能组合都至少出现一次</li>
+<li>修正条件判定覆盖（MCDC）：在各种条件组合中，其他所有条件恒定不变的情况下，对每个条件变量分别只取真假值一次；每个条件对于判定的结果值都是独立的</li>
+</ol>
+<p><strong>考题1</strong>：</p>
+<p>针对逻辑覆盖 _____ 叙述是不正确的。(答案: <font color="red"><strong>A</strong></font>)</p>
+<p>A. 达到100%CC要求就一定能够满足100%DC的要求<br>B. 达到100%CDC要求就一定能够满足100%DC的要求<br>C. 达到100%MCDC要求就一定能够满足100%DC的要求<br>D. 达到100%路径覆盖要求就一定能够满足100%DC的要求</p>
+<p><strong>考题2</strong>：</p>
+<p>关于白盒测试的测试用例设计方法叙述，正确的是 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 完成SC所需的测试用例数目一定多于完成DC所需的测试用例数目<br>B. 达到100%CC要求就一定能够满足100%SC的要求<br>C. 达到100%CDC要求就一定能够满足100%CC的要求<br>D. 任何情况下都能达到100%路径覆盖要求</p>
+<p><strong>考题3</strong>：</p>
+<p>针对逻辑覆盖有下列叙述，_____ 是不正确的。(答案: <font color="red"><strong>B</strong></font>)</p>
+<p>A. 达到100%DC要求就一定能够满足100%SC的要求<br>B. 达到100%CC要求就一定能够满足100%SC的要求<br>C. 达到100%CDC要求就一定能够满足100%SC的要求<br>D. 达到100%MCDC要求就一定能够满足100%DC的要求</p>
+<blockquote>
+<p>注：</p>
+<p>满足DC、CDC、MCDC的要求一定满足SC，但是CC例外</p>
+<p>CC不一定满足DC、CC</p>
+</blockquote>
+<p><strong>考题4</strong>：</p>
+<p>针对下列程序段，需要 _____ 个测试用例可以满足语句覆盖的要求。(答案: <font color="red"><strong>C</strong></font>)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span>(value) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">    other = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">    other = <span class="number">50</span>;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    other = <span class="number">300</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">    other = other / value;</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    other = other * value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A. 2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 5</p>
+<blockquote>
+<p>注： 是不是选择了D选项，哈哈哈，小迷糊，和我一样一样的</p>
+<p>case 2中没有break，因此他不会反悔other值，而是继续执行case 3，因此为4个测试用例</p>
+<p>如果是ifelse语句，则为判定个数+1</p>
+</blockquote>
+<p><strong>考题5</strong>：</p>
+<p>针对以下C语言程序段，对于（MaxNum，Type）的取值，至少需要 _____ 个测试用例可以满足判定覆盖的要求。(答案: <font color="red"><strong>C</strong></font>)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(MaxNum-- &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">10</span> == Type)&#123;</span><br><span class="line">        x = y *<span class="number">2</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">100</span> == Type)&#123;</span><br><span class="line">            x = y + <span class="number">10</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            x = y - <span class="number">20</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A. 5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 2</p>
+<p><strong>考题6</strong>：</p>
+<p>针对程序段IF(A||B||C) THEN W=W/X，对于（A,B,C）的取值， _____ 测试用例能够满足MCDC的要求。(答案: <font color="red"><strong>D</strong></font>)</p>
+<p>A. (F,T,T)(T,F,T),(T,F,F)(T,T,F) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. (T,F,F)(T,T,F),(F,T,T)(F,F,F)</p>
+<p>A. (T,F,F)(T,T,F),(F,T,T)(F,F,T) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. (T,F,F)(F,T,F),(F,F,T)(F,F,F)</p>
+<blockquote>
+<p>注:</p>
+<p>每个判定中的条件都独立影响判定结果至少一次，因此该判定必须要有T or F一次，因此必须要有(F,F,F)</p>
+<p>对于“或”表达式中的每个条件要是某个变量独立影响结果，需要其他条件都是F</p>
+<p>对于“与”表达式中的每个条件要是某个变量独立影响结果，需要其他条件都是T</p>
+</blockquote>
+<h3 id="基本路径法"><a href="#基本路径法" class="headerlink" title="基本路径法"></a><font color="blue">基本路径法</font></h3><p>主要考圈复杂度和独立路径</p>
+<p><strong>圈复杂度</strong>：V(G) = e - n + 2;  V(G) = 区域数 = 判定结点数 + 1</p>
+<p>e：程序控制流程图中边的数量</p>
+<p>n：程序控制流程图中结点的数量</p>
+<p><strong>独立路径</strong>：一条独立路径至少包含有一条在其他独立路径中从未有过的边的路径</p>
+<p><strong>考题1</strong>：</p>
+<p>在程序控制流图中，有8条边，6个节点，则控制流程图的环路复杂性V(G)d等于 _____ 。(答案: <font color="red"><strong>C</strong></font>)</p>
+<p>A. 2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B. 4 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C. 6 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; D. 8</p>
+<blockquote>
+<p>注：环路复杂性 = 圈复杂度 = 线性无关的基本路径</p>
+<p>主要题型：一般是给你一幅控制流程图，让你选择答案</p>
+<p>也可能是在下午题中，你自己画控制流程图（对我来说这是难点），判断V(G),在根据V(G)写出基本路径</p>
+<p>基本路径的粗略写法：</p>
+<p>path1：。。。<br>path2：。。。<br>path3：。。。<br>。。。。</p>
+<p>在根据这个写法编写测试用例,下面的测试路径写的就是这些path</p>
+</blockquote>
+<p>Example：</p>
+<p><img src="http://pic.yuti.site/path.png" alt="控制流程图"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">测试用例名称</th>
+<th style="text-align:center">测试数据</th>
+<th style="text-align:center">预期结果</th>
+<th style="text-align:center">测试路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">CASE1</td>
+<td style="text-align:center">year=1001</td>
+<td style="text-align:center">leap=0</td>
+<td style="text-align:center">1-2-3-11-12</td>
+</tr>
+<tr>
+<td style="text-align:center">CASE2</td>
+<td style="text-align:center">year=1004</td>
+<td style="text-align:center">leap=1</td>
+<td style="text-align:center">1-2-4-5-10-11-12</td>
+</tr>
+<tr>
+<td style="text-align:center">CASE3</td>
+<td style="text-align:center">year=1100</td>
+<td style="text-align:center">leap=0</td>
+<td style="text-align:center">1-2-4-6-7-9-10-11-12</td>
+</tr>
+<tr>
+<td style="text-align:center">CASE4</td>
+<td style="text-align:center">year=2000</td>
+<td style="text-align:center">leap=1</td>
+<td style="text-align:center">1-2-4-6-8-9-10-11-12</td>
+</tr>
+</tbody>
+</table>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/08/05/程序设计语言知识-软件评测师教程/">程序设计语言知识</a><a class="next" href="/2018/07/26/她在我这只能幸福/">她在我这只能幸福</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

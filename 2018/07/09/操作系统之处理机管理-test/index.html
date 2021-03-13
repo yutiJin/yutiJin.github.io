@@ -1,0 +1,194 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>操作系统之处理机管理 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统之处理机管理</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统之处理机管理</h1><div class="post-meta">Jul 9, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>在准备软件评测师考试，借此给知识点进行整理汇总。</p>
+<h1 id="操作系统定义与分类"><a href="#操作系统定义与分类" class="headerlink" title="操作系统定义与分类"></a>操作系统定义与分类</h1><p><strong>操作系统的定义</strong>：操作系统(OS)直接控制和管理计算机硬件和软件资源，合理的对各类作业进行调度，以方便用户使用的进程集合。</p>
+<p><strong>操作系统的基本类型</strong>：批处理操作系统、实时操作系统、分时操作系统、网络式操作系统和分布式操作系统。</p>
+<p><strong>操作系统功能分类</strong>：处理机管理、存储管理、文件管理、设备管理和作业管理。</p>
+<h1 id="处理机管理"><a href="#处理机管理" class="headerlink" title="处理机管理"></a>处理机管理</h1><p>进程管理是操作系统部分的核心内容，是历年考试的重点。主要偏重于进程的同步与互斥、信号量和P-V操作、进程的基本概念、管程以及线程。</p>
+<h2 id="1-什么是进程"><a href="#1-什么是进程" class="headerlink" title="1. 什么是进程"></a>1. 什么是进程</h2><p>进程是可以与其他程序并发执行的段程序的一次执行过程，是系统进行<font color="orange"><strong>资源分配和调度</strong></font>的基本单位。进程是一个程序关于某个数据集的一次运行。也就是说，进程是运行中的程序，是程序的<font color="orange"><strong>一次运行活动</strong></font>。进程是动态概念，而程序是静态概念，是指令的集合，因此，进程具有并发性和动态性。</p>
+<p>进程实体是由<strong>程序块</strong>、<strong>进程控制块(PCB)</strong>、<strong>数据块</strong>3部分组成。</p>
+<p><strong>程序块</strong>：描述该进程所要完成的任务</p>
+<p><strong>数据块</strong>：包括程序在执行时所需要的数据和工作区</p>
+<p><strong>进程控制块</strong>：包括该进程的描述信息、控制信息、资源管理信息和CPU现场保护信息，反映了进程的动态特征</p>
+<p>进程控制块(PCB)是进程存在的唯一标识，描述了进程的基本情况。</p>
+<p><strong>考题：</strong></p>
+<p>（1）进程是操作系统的一个重要概念。进程是一个具有一定独立功能的程序在某个数据集合上的一次 _____ 。</p>
+<p>（2）进程是一个 _____ 的概念，而程序是一个 _____ 的概念。</p>
+<p>（3） _____ 是操作系统中可以并行工作的基本单位，也是核心调度及资源分配的最小单位，它由 _____ 组成，它与程序最主要的区别之一是 _____ 。（最后一个空格：他有状态而程序没有）</p>
+<h2 id="2-进程的状态转换"><a href="#2-进程的状态转换" class="headerlink" title="2. 进程的状态转换"></a>2. 进程的状态转换</h2><p><strong>就绪状态</strong>：指进程分配到除了处理机以外的必需的资源(已经具备执行条件)的状态。进程创建后处于就绪状态，处于就绪状态可以有多个。</p>
+<p><strong>执行状态</strong>：指进程占有处理机在CPU上执行的状态。在单CPU系统中，每一时刻只有一个进程处于执行状态。</p>
+<p><strong>阻塞状态</strong>：指进程因<font color="orange">等待某个事件的发生</font>而放弃处理机进入等待状态。系统中处于这种状态的进程可以有多个。</p>
+<p>在现代操作系统中还有挂起状态</p>
+<p><strong>引起挂起状态的原因：</strong></p>
+<ul>
+<li>终端用户的请求（比如我们编写代码之后的调试编译）</li>
+<li>父进程的请求</li>
+<li>负调节的作用</li>
+<li>操作系统的需要</li>
+</ul>
+<p><strong>为什么需要引入挂起状态？</strong></p>
+<p>我的理解：是内存容量太小，放不下所以的进程，因此将一些处于内存中的就绪状态和堵塞状态转到外存去变成挂起就绪状态和挂起堵塞状态，以此来缓解内存压力。</p>
+<p><strong>考题：</strong></p>
+<p>（1）进程的最基本状态有  _____ 。在一个单处理机中，若有6个用户进程，在非管态的某一时刻，处于就绪状态的用户进程最多有 _____ 个。（最后一个空格：5）</p>
+<blockquote>
+<p>注：</p>
+<p>非管态：用户进程处于执行状态</p>
+<p>因为是单处理机，所以处于执行状态的进程至少且最多只有一个，so就绪状态的进程最多为进程总数-1；最少为0个，其他都处于阻塞状态。</p>
+</blockquote>
+<h2 id="3-进程的创建过程"><a href="#3-进程的创建过程" class="headerlink" title="3. 进程的创建过程"></a>3. 进程的创建过程</h2><ul>
+<li>申请空白的进程控制块(PCB)</li>
+<li>为新的过程分配资源</li>
+<li>初始化PCB</li>
+<li>将新进程插入就绪队列</li>
+</ul>
+<h2 id="4-进程的临界资源"><a href="#4-进程的临界资源" class="headerlink" title="4. 进程的临界资源"></a>4. 进程的临界资源</h2><p><strong>临界资源</strong>：一次只能供一个进程访问的资源</p>
+<p><strong>临界区</strong>：把不允许多个并发进程交叉执行的一个程序称为临界区(进程中访问临界资源的那段代码)</p>
+<h2 id="5-进程的同步与互斥"><a href="#5-进程的同步与互斥" class="headerlink" title="5. 进程的同步与互斥"></a>5. 进程的同步与互斥</h2><h3 id="（1）同步与互斥的定义"><a href="#（1）同步与互斥的定义" class="headerlink" title="（1）同步与互斥的定义"></a>（1）同步与互斥的定义</h3><p><strong>进程同步</strong>：是进程之间直接的制约关系，是为完成某种任务而建立的两个或多个线程。也就是说，进程之间是异步的，同步即是使各个进程按照一定的制约顺序和速度执行。</p>
+<p>同步机制应该遵循的规则：</p>
+<ul>
+<li>空闲让进 </li>
+<li>忙则等待</li>
+<li>有限等待(不能让其死等）</li>
+<li>让权等待(当进程不能进入临界区时应该立即释放处理机，防止等待时仍占用CPU资源)</li>
+</ul>
+<p><strong>进程互斥</strong>：是进程之间间接制约关系，互斥是要保证临界资源在某一时刻只被一个进程访问。也就是说，两个进程不能同时进入同一个临界区。</p>
+<blockquote>
+<p>注：</p>
+<p>解决进程同步与互斥的方法主要有：加锁法、<strong>信号量机制</strong>、<strong>管程机制</strong>等。</p>
+</blockquote>
+<h3 id="（2）什么是信号量？"><a href="#（2）什么是信号量？" class="headerlink" title="（2）什么是信号量？"></a>（2）什么是信号量？</h3><p>信号量是OS提供的管理公有资源的有效手段。</p>
+<p>信号量(S)代表<font color="orange"><strong>可用资源</strong></font>实体的数量。</p>
+<p><strong>记录型信号量</strong>：引入整形变量value(代表资源数目)、进程链表L(链接所有等待进程）</p>
+<h3 id="（3）P-V操作"><a href="#（3）P-V操作" class="headerlink" title="（3）P-V操作"></a>（3）P-V操作</h3><p><strong>P操作</strong>：</p>
+<ul>
+<li>申请资源，减量操作，S.value:=S.value-1</li>
+<li>当S.value&lt;0时，表示资源分配完，进行自我阻塞</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wait(S)</span><br><span class="line">  begin</span><br><span class="line">  	S.value:=S.value-1;</span><br><span class="line">  	if S.value&lt;0 then</span><br><span class="line">  		block(S,L)</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<p><strong>V操作</strong>：</p>
+<ul>
+<li>释放资源，增量操作，S.value:=S.value+1</li>
+<li>当S.value&gt;0时,唤醒S.L链表中等待的进程</li>
+</ul>
+<p>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">signal(S)</span><br><span class="line">  begin</span><br><span class="line">  	S.value:=S.value+1;</span><br><span class="line">  	if S.value&lt;=0 then</span><br><span class="line">  		wakeup(S,L)</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>value&gt;0,代表可用资源的数量</p>
+<p>value&lt;0,代表由于申请资源而阻塞的进程数</p>
+</blockquote>
+<p>信号量是由一个整形变量和一个等待队列构成，对这个整形变量除了初始化以外就只能实施P-V操作。其中P-V操作是属于低级的进程通信原语。</p>
+<p><strong>采用P-V操作实现进程同步的步骤</strong>：</p>
+<ul>
+<li>各并发进程设置私用信号量</li>
+<li>为私用信号量赋初值</li>
+<li>利用P-V原语和私用信号量规定各进程的执行顺序</li>
+</ul>
+<p>经典同步问题的例子：生产者-消费者的问题：</p>
+<p>这要求存后再取，取后再存，即有两个制约关系。为此需要两个信号量，记Bufempty=1，Buffull=0。</p>
+<p><strong>生产者：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">loop</span><br><span class="line">生产一个产品next</span><br><span class="line">P(Bufempty);</span><br><span class="line">next产品存入缓存区;</span><br><span class="line">V(Buffull);</span><br><span class="line">endloop</span><br></pre></td></tr></table></figure>
+<p><strong>消费者：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">loop</span><br><span class="line">P(Buffull);</span><br><span class="line">从缓存区中取出next产品;</span><br><span class="line">V(Bufempty);</span><br><span class="line">使用产品</span><br><span class="line">endloop</span><br></pre></td></tr></table></figure>
+<p><strong>采用P-V操作实现进程互斥的步骤</strong>：</p>
+<ul>
+<li>为临界资源设置共用信号量</li>
+<li>为公用信号量赋初值</li>
+<li>利用P-V原语和公用信号量实现并发进程的互斥，使用临界资源</li>
+</ul>
+<p>信号量mutex表示的是互斥信号量，初值为1，表示没有并发进程使用该临界值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">P(mutex)</span><br><span class="line">临界区</span><br><span class="line">V(mutex）</span><br></pre></td></tr></table></figure>
+<p><strong>考题</strong>：</p>
+<p>（1）在某个超市里有一个收银员，且同时最多允许n个顾客购物，我们可以将顾客和收银员看成是两类不同的进程，且工作如下图所示。为了利用P-V操作正确地协调这两类进程之间的工作，设置了3个信号量S1，S2和Sn，且初值分别为0，0，n。这样图中的a应填写 _____ ,图中的b1、b2应分别填写 _____ ,图中的c1、c2应分别填写 _____ 。</p>
+<center><img src="http://pic.blackist.top/shopping.jpg" alt="超市购物流程图"></center>
+
+<p>（2）若有一个仓库，可以存放P1,P2两种产品，但是每次只能存放一种产品。要求：w=P1的数量-P2的数量； -i&lt;w&lt;k (i,k为正整数）。若用P-V操作实现P1和P2产品的入库过程，至少需要 _____ （答案：2）个同步信号量和 _____ (答案：1)个互斥信号量，其中，同步信号量的初值分别为 _____ (答案：i-1，k-1),互斥信号量的初值分别为 _____ (答案：1)。</p>
+<blockquote>
+<p>注：</p>
+<p>P1，P2两个产品同时竞争一个仓库</p>
+<p>so，Sp1表示存放产品P1， Sp2表示存放产品P2</p>
+<p>只有一个仓库，因此只需一个初值为1的互斥信号量mutex</p>
+</blockquote>
+<h2 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h2><p><strong>管程</strong>：一种新的同步机制，它是由过程、变量以及数据结构等组成的集合。它把分散在各个进程中互斥访问公共变量的那些临界区集中起来，统一管理。</p>
+<p>管程实现了进程之间的互斥，使临界区互斥实现了自动化，它比信号量更容易保证并发进程的正确性。</p>
+<p><strong>考题</strong>：</p>
+<p>在操作系统中。管程由管程名、局部变量与管程变量说明、使用共享资源并在数据结构上进行操作的若干过程,以及对变量赋初值的语句等4个基本部分组成，<font color="red">一个管程管理一个临界资源</font>。任何一个进程请求使用某临界资源时，对于其他相关进程而言<font color="red">必须互斥的进入管程</font>。其方法是通过调用特定的<font color="red">管程入口</font>才能进入管程，然后通过管程中<font color="red">使用临界资源的一个过程</font>使用临界资源。在执行中发现共享临界资源被告或条件不成立时，调用管程的进程必须等待使用临界资源的另一进城来欢喜。为了表示不同的等待原因，设置了条件变量，条件变量是<font color="red">与普通变量不同的变量，条件变量不能取任何值，只是一个排队栈</font>。</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>线程是进程中的一个实体，是系统实施调度的独立单位。</p>
+<p><strong>考题</strong>：</p>
+<p>（1）在SMP系统中，操作系统还提供了 _____ 机制，它是  _____ 的最小单位。（线程，处理器分配）</p>
+<blockquote>
+<p>注：</p>
+<p>SMP：多处理器系统</p>
+<p>在多线程系统中，一个进程可以由一个或多个线程构成，进程是资源分配的基本单位，而线程是处理器分配的最小单位。</p>
+</blockquote>
+<h2 id="进程调度和死锁"><a href="#进程调度和死锁" class="headerlink" title="进程调度和死锁"></a>进程调度和死锁</h2><p><strong>（1）进程调度的两个基本方式</strong></p>
+<ol>
+<li>非剥夺方式：分派程序一旦把处理机分配给某个进程后则使其一直运行下去，知道进程完成或发生某事件而堵塞时才把处理机给另一个进程。</li>
+<li>剥夺方式：当一个进程正在运行时，系统可以基于某种原则剥夺已为其分配的处理机，并且分配给其他进程。剥夺原则有优先权原则、短进程优先原则以及时间片原则等。</li>
+</ol>
+<p>衡量进程调度性能的指标一是<font color="orange"><strong>周转时间</strong></font>,即从提交开始到完成为止的时间间隔；二是<font color="orange"><strong>响应时间</strong></font>，即从提交一个请求到首次产生响应的时间间隔。</p>
+<p><strong>（2）进程调度算法</strong></p>
+<ol>
+<li><p>先进先出算法（FIFO)</p>
+<p>该算法总是把处理机分配给最先进入就绪队列的进程，一旦进程分到处理机，就会一直执行下去，知道该进程完成或阻塞时才会释放处理机。</p>
+</li>
+<li><p>优先数调度算法（SCBF)</p>
+<p>可分为静态优先级和动态优先级，静态优先级是指进程的优先级在进程开始执行前确定，执行过程中不变；动态优先级则可以在进程执行过程中改变。</p>
+</li>
+<li><p>时间片转轮法</p>
+<p>分时系统中通常采用时间片转轮法。系统吧所有就绪进程按照FIFO规则排队，按一定的时间间隔把处理机分配给队列中的进程。</p>
+</li>
+</ol>
+<p><strong>考题</strong>：</p>
+<p>（1）在有一台处理机CPU和两台输出设备IO1和IO2，且能够实现抢先式多任务并行工作的多道程序内，投入运行优先级由高到低P1，P2，P3这3个作业。他们使用设备的先后顺序和占用设备时间分别是：</p>
+<p>作业P1：IO2（30毫秒） CPU（10毫秒） IO1（30毫秒） CPU（10毫秒）</p>
+<p>作业P2：IO1（20毫秒） CPU（20毫秒） IO2（40毫秒）</p>
+<p>作业P3：CPU（30毫秒） IO1（20毫秒）</p>
+<p>假设对于其他辅助操作时间可以忽略不计，作业P1，P2<br>，P3从投入到完成所用的时间分别是 _____ 毫秒， _____ 毫秒和 _____ 毫秒。3个作业从投入运行到全部完成，CPU的利用率为 _____ %，IO1的利用率约为 _____ %。（<font color="orange">80,90,90,78,78</font>）</p>
+<p>假设在系统中有且仅有3个作业投入运行，各设备的利用率指该设备的使用时间同作业进程全部完成所占用最长时间的比率。</p>
+<blockquote>
+<p>注：</p>
+<p>在抢先式多任务系统中，CPU是可抢先的，即任何时刻CPU总是分配给需要CPU的优先级最高的作用。</p>
+<p>设备利用率=设备的有效工作时间 / 设备总的运行时间</p>
+<p>作业的执行时序图</p>
+<p><img src="http://pic.yuti.site/time.jpg" alt="作业时序图"></p>
+<p>跟着图画一遍，这中类似的题，就会做了</p>
+</blockquote>
+<p><strong>（3）死锁</strong></p>
+<p>死锁是指两个或两个以上进程在执行过程中因争夺资源而造成的一种互相等待的现象。若无外力，则其均无法继续。</p>
+<p>例子：进程A锁住了资源1并等待资源2，而进程B锁住了资源2并等待资源1。</p>
+<p><strong>产生死锁的原因</strong>：</p>
+<ul>
+<li>系统资源不足</li>
+<li>进程运行推进顺序不合适</li>
+<li>资源分配不当</li>
+</ul>
+<p><strong>产生死锁的必要条件</strong>：</p>
+<ul>
+<li>互斥条件（一个资源每次只能被一个进程使用）</li>
+<li>请求与等待条件（一个进程因请求资源而阻塞时对已经获得的资源保持不放）</li>
+<li>不剥夺条件（进程已经获得的资源，在未使用完之前不能被强行剥夺）</li>
+<li>循环等待条件（若干个进程之间形成一种头尾相接的循环等待资源的关系）</li>
+</ul>
+<p><strong>考题</strong>：<br>（1）为了解决进程间的同步和互斥问题，通常使用一种称为 _____ 机制的方法。若系统中有5个进程共享若干个资源R，每个进程都需要4个资源，那么使系统不发生死锁的资源R的最少数目是 _____ 。（<font color="red">信号量，3*5+1=16</font>）</p>
+<p>（2）因争用资源产生死锁的必要条件是互斥、循环等待、不可抢占和 _____ 。对于缓冲池（大量的缓冲区）的管理采用生产者-消费者方式解决同步与互斥问题时，通常需要 _____ 信号量。（&lt;font color=red</p>
+<blockquote>
+<p>保持和等待，3）</p>
+<p>注：</p>
+<p>两个私用信号量empty、full和一个公用信号量mutex</p>
+<p>一定不会发生死锁：m&gt;n*(w-1)</p>
+<p>m表示资源总数</p>
+<p>n表示进程总数</p>
+<p>w表示每个进程对资源的最大需求</p>
+</blockquote>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><p>整理了很久，还是有些是云里雾里的，但是比最初的时候是要好一些，加油，小姑凉。</p>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/10/操作系统之存储管理-test/">操作系统之存储管理</a><a class="next" href="/2018/07/06/vue-cli的使用/">vue-cli的使用(vue)</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

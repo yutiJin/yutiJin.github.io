@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="google-site-verification" content="lhpP-ynnM1LzlwUYGAFIKYo-NZuA4gYlwDogM3BfPew"><meta name="baidu-site-verification" content="x8kML5D742"><meta name="description" content="Just for Blackist"><title>数据库的子查询 | YuTi的博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数据库的子查询</h1><a id="logo" href="/.">YuTi的博客</a><p class="description">一条不爱学习小金鱼</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">数据库的子查询</h1><div class="post-meta">Jul 18, 2018<span> | </span><span class="category"><a href="/categories/软件评测师/">软件评测师</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>复杂查询 = 限定查询 + 多表查询 + 统计查询 + 子查询。</p>
+<h1 id="WHERE子句中的子查询"><a href="#WHERE子句中的子查询" class="headerlink" title="WHERE子句中的子查询"></a>WHERE子句中的子查询</h1><h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p><strong>范例</strong>：查询最低工资雇员的信息</p>
+<ul>
+<li><p>步骤一：查询最低工资</p>
+<p><code>SELECT MIN(sal) FROM emp;</code></p>
+</li>
+<li><p>步骤二：最低工资雇员信息</p>
+<p><code>SELECT * FROM emp WHERE sal=(SELECT MIN(sal) FROM emp);</code></p>
+</li>
+</ul>
+<p>so，这就是一个子查询，即就是在一个完整的查询之中定义了若干个小的查询所形成的复杂查询。</p>
+<p>注意：所有子查询编写的时候一定要使用“（）”标记。</p>
+<h2 id="WHERE子句中处理子查询"><a href="#WHERE子句中处理子查询" class="headerlink" title="WHERE子句中处理子查询"></a>WHERE子句中处理子查询</h2><h3 id="子查询返回的是单行单列数据"><a href="#子查询返回的是单行单列数据" class="headerlink" title="子查询返回的是单行单列数据"></a><font color="tomato">子查询返回的是单行单列数据</font></h3><p><strong>范例</strong>： 查询出基本工资比ALLEN低的全部雇员信息</p>
+<p>分析：</p>
+<ul>
+<li><p>步骤一：找到ALLEN的工资（返回的是单行单列的数据，即一个数值）</p>
+<p><code>SELECT sal FROM emp WHERE ename=&#39;ALLEN&#39;;</code></p>
+</li>
+<li><p>步骤二：在WHERE子句中使用此子查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> sal &lt; (<span class="keyword">SELECT</span> sal <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename=<span class="string">'ALLEN'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="子查询返回的是单行多列的数据"><a href="#子查询返回的是单行多列的数据" class="headerlink" title="子查询返回的是单行多列的数据"></a><font color="tomato">子查询返回的是单行多列的数据</font></h3><p><strong>范例</strong>：查询与SCOTT从事同一工作且工资相同的雇员信息</p>
+<ul>
+<li><p>步骤一：找到SCOTT的工作和工资</p>
+<p><code>SELECT job,sal FROM emp WHERE ename=&quot;SCOTT&quot;;</code></p>
+</li>
+<li><p>步骤二：既然返回的是单行两列的数据，那么我们还是用WHERE进行判断</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> (job,sal) = (<span class="keyword">SELECT</span> job,sal <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename=<span class="string">"SCOTT"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="子查询返回的是多行单列数据"><a href="#子查询返回的是多行单列数据" class="headerlink" title="子查询返回的是多行单列数据"></a><font color="tomato">子查询返回的是多行单列数据</font></h3><p>在使用多行子查询时，主要使用三种操作符：IN、ANY、ALL</p>
+<p><strong>范例</strong>：查询出与每个部门中最低工资相同的全部雇员信息</p>
+<ul>
+<li><p>步骤一：查询出与每个部门之中最低工资相同的全部雇员信息</p>
+<p><code>SELECT MIN(sal) FROM emp GROUP BY deptno ;</code></p>
+</li>
+<li><p>步骤二：要在此范围之中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> sal <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(sal) <span class="keyword">FROM</span> emp <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="HAVING子句中使用子查询"><a href="#HAVING子句中使用子查询" class="headerlink" title="HAVING子句中使用子查询"></a>HAVING子句中使用子查询</h1><p>HAVING一定是结合GROUP BY子句一起使用的，其主要目的是进行分组后数据的再次过滤，而且与WHERE子句不同的是，HAVING是在分组后，可以使用统计函数。</p>
+<p>HAVING语句使用子查询，返回的数据往往是单行单列的。</p>
+<p><strong>范例</strong>：查询部门编号、雇员人数、平均工资，且要求这些部门的平均工资高于公司平均薪金</p>
+<ul>
+<li><p>步骤一：查询出公司的平均薪金</p>
+<p><code>SELECT AVG(sal) FROM emp;</code></p>
+</li>
+<li><p>步骤二：按照deptno字段进行分组，并且统计部门信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> deptno, <span class="keyword">COUNT</span>(empno), <span class="keyword">AVG</span>(sal)</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>步骤三：要执行分组后的数据过滤</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> deptno, <span class="keyword">COUNT</span>(empno), <span class="keyword">AVG</span>(sal)</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">AVG</span>(sal) &gt; (<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(sal) <span class="keyword">FROM</span> emp);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="FROM子句中使用子查询"><a href="#FROM子句中使用子查询" class="headerlink" title="FROM子句中使用子查询"></a>FROM子句中使用子查询</h1><p>FROM子句中出现的内容一般都是多行多列的子查询</p>
+</div><div class="tags"><a href="/tags/考证/">考证</a></div><div class="post-nav"><a class="pre" href="/2018/07/26/她在我这只能幸福/">她在我这只能幸福</a><a class="next" href="/2018/07/18/数据库的分组统计查询-软件评测师/">数据库的统计查询</a></div><!-- include _widget/leancloud.pug--><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'dd6c577fdd019428d4ec',
+  clientSecret: '2e6d1757411268125157790f74b8eac1cf9f0fd5',
+  repo: 'yutiJin.github.io',
+  owner: 'yutiJin',
+  admin: ['yutiJin'],
+  id: md5(location.href.trimEnd('{theme.gitalk.hreftrimend}')),
+  distractionFreeMode: true
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://yuti.site"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Appium/">Appium</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monkey/">Monkey</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/">RobotFramework</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/RobotFramework/Appium/">Appium</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-JS/">Web_JS</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web-Vue/">Web_Vue</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/video/">video</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/教师资格证考试/">教师资格证考试</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件评测师/">软件评测师</a><span class="category-list-count">13</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/life/" style="font-size: 15px;">life</a> <a href="/tags/work/" style="font-size: 15px;">work</a> <a href="/tags/考证/" style="font-size: 15px;">考证</a> <a href="/tags/自动化测试/" style="font-size: 15px;">自动化测试</a> <a href="/tags/MarkDown/" style="font-size: 15px;">MarkDown</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div><ul></ul><a href="https://blackist.org/" title="Handsome Boy" target="_blank">Handsome Boy</a><ul></ul><a href="https://youzime.github.io/" title="Lovely Fang" target="_blank">Lovely Fang</a><ul></ul><a href="https://github.com/yutiJin" title="My_Github" target="_blank">My_Github</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2021 <a href="/." rel="nofollow">YuTi的博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
